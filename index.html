@@ -8,35 +8,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link href="./dist/output.css" rel="stylesheet">
-
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Kustomisasi titik navigasi Swiper agar warnanya Biru BPP */
         .swiper-pagination-bullet-active { background-color: #1e3a8a !important; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 overflow-x-hidden">
-
-    <nav class="bg-white fixed w-full z-30 top-0 start-0 border-b border-gray-200 shadow-sm transition-all duration-300">
+    <!-- Navigation -->
+    <nav class="bg-white fixed w-full z-30 top-0 start-0 border-b border-gray-200 shadow-sm">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
+            <a href="#" class="flex items-center gap-3">
                 <img src="./assets/logo-1.png" class="h-10 md:h-12 w-auto object-contain" alt="Logo PT BPP">
                 <div class="flex flex-col">
-                    <span class="text-sm md:text-lg font-bold text-blue-900 leading-tight">PT Bojongkokosan</span>
-                    <span class="text-xs md:text-sm font-semibold text-gray-500 leading-tight">Putra Perkasa</span>
+                    <span class="text-sm md:text-lg font-bold text-blue-900 leading-tight">PT Bojongkokosan Putra Perkasa</span>
                 </div>
             </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="https://wa.me/6281298352065" target="_blank" class="hidden md:inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition transform hover:scale-105">
-                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+
+            <div class="flex md:order-2 gap-3">
+                <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="hidden md:inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors shadow-lg shadow-blue-700/30">
                     Hubungi Kami
-                </a>
+                </button>
                 <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -44,17 +40,19 @@
                     </svg>
                 </button>
             </div>
+
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
-                    <li><a href="#home" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">Beranda</a></li>
-                    <li><a href="#about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Tentang Kami</a></li>
-                    <li><a href="#services" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Layanan</a></li>
-                    <li><a href="#projects" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Proyek</a></li>
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:gap-8 md:mt-0 md:border-0 md:bg-white">
+                    <li><a href="#home" class="block py-2 px-3 text-blue-700 md:p-0 font-bold">Beranda</a></li>
+                    <li><a href="#about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Tentang Kami</a></li>
+                    <li><a href="#services" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Layanan</a></li>
+                    <li><a href="#projects" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Proyek</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="mt-16 relative bg-gray-900 bg-[url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop')] bg-no-repeat bg-cover bg-center bg-blend-overlay bg-opacity-80">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-48" data-aos="fade-up" data-aos-duration="1000">
             <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl uppercase">
@@ -65,16 +63,14 @@
                 Mitra terpercaya penyediaan material konstruksi, jasa konstruksi, dan solusi infrastruktur berkualitas di Indonesia.
             </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                <a href="#services" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 transition hover:-translate-y-1">
+                <a href="#services" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 transition-colors">
                     Lihat Produk
-                </a>
-                <a href="#contact" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-white hover:text-gray-900 focus:ring-4 focus:ring-gray-400 transition">
-                    Kontak Kami
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Why Us Section -->
     <section class="bg-white py-16">
         <div class="px-4 mx-auto max-w-screen-xl">
             <div class="text-center mb-12" data-aos="fade-up">
@@ -83,102 +79,161 @@
             </div>
             
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">1</div>
                     <h3 class="mb-2 text-xl font-bold text-gray-900">Harga Kompetitif</h3>
-                    <p class="text-gray-600 text-sm">Menawarkan harga transparan dan kompetitif untuk nilai terbaik proyek Anda.</p>
+                    <p class="text-gray-600 text-sm">Menawarkan harga transparan dan kompetitif.</p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">2</div>
                     <h3 class="mb-2 text-xl font-bold text-gray-900">Kualitas Terjamin</h3>
-                    <p class="text-gray-600 text-sm">Produk melalui seleksi ketat dan pengendalian mutu sesuai standar[cite: 5].</p>
+                    <p class="text-gray-600 text-sm">Produk melalui seleksi ketat dan pengendalian mutu.</p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">3</div>
                     <h3 class="mb-2 text-xl font-bold text-gray-900">Pengiriman Cepat</h3>
-                    <p class="text-gray-600 text-sm">Sistem logistik andal memastikan pengiriman tepat waktu[cite: 7].</p>
+                    <p class="text-gray-600 text-sm">Sistem logistik andal memastikan pengiriman tepat waktu.</p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="400">
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">4</div>
                     <h3 class="mb-2 text-xl font-bold text-gray-900">Jangkauan Nasional</h3>
-                    <p class="text-gray-600 text-sm">Melayani pengiriman antarpulau ke seluruh wilayah Indonesia[cite: 9].</p>
+                    <p class="text-gray-600 text-sm">Melayani pengiriman antarpulau ke seluruh wilayah.</p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="500">
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition duration-300 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="500">
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">5</div>
                     <h3 class="mb-2 text-xl font-bold text-gray-900">Mitra Terpercaya</h3>
-                    <p class="text-gray-600 text-sm">Tim profesional berkomitmen memberikan solusi terbaik[cite: 11].</p>
+                    <p class="text-gray-600 text-sm">Tim profesional berkomitmen memberikan solusi terbaik.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="bg-blue-900 py-16 text-white overflow-hidden">
-        <div class="px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-            <div class="mb-8 lg:mb-0" data-aos="fade-right">
-                <h2 class="mb-4 text-3xl md:text-4xl font-extrabold text-white">Tentang Kami</h2>
-                <p class="mb-4 text-gray-300 leading-relaxed">
-                    PT Bojongkokosan Putra Perkasa bergerak di bidang penyediaan bahan bangunan, jasa konstruksi, konsultan, serta produsen IPAL. Kami siap menjadi mitra terpercaya dalam memenuhi kebutuhan proyek Anda[cite: 13, 17].
-                </p>
-                <div class="space-y-4 mt-8">
-                    <div class="border-l-4 border-yellow-400 pl-4">
-                        <h4 class="text-xl font-bold text-yellow-400">Visi</h4>
-                        <p class="text-sm text-gray-300">Menjadi perusahaan terkemuka dan terpercaya di bidang penyediaan material konstruksi dan solusi infrastruktur[cite: 19].</p>
+    <!-- About Section -->
+    <section id="about" class="bg-blue-900 pt-16 pb-24 text-white relative">
+        <div class="px-4 mx-auto max-w-screen-xl">
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div data-aos="fade-right">
+                    <h2 class="mb-6 text-3xl md:text-4xl font-extrabold text-white">Tentang Kami</h2>
+                    <p class="mb-6 text-gray-300 leading-relaxed text-justify">
+                        PT Bojongkokosan Putra Perkasa adalah perusahaan yang bergerak di bidang penyediaan dan distribusi bahan bangunan, jasa konstruksi, konsultan perencana, serta produsen Instalasi Pengolahan Air Limbah (IPAL).
+                    </p>
+                    <p class="mb-6 text-gray-300 leading-relaxed text-justify">
+                        Perusahaan didukung oleh tenaga profesional dan berkomitmen terhadap kualitas untuk menjadi mitra terpercaya dalam proyek konstruksi dan infrastruktur. Layanan dan produk yang disediakan meliputi Material Konstruksi, Perpipaan, serta Finishing & MEP.
+                    </p>
+                    
+                    <div class="bg-blue-800 p-6 rounded-lg border-l-4 border-yellow-400 mt-8">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Visi Perusahaan</h3>
+                        <p class="italic text-gray-200">
+                            "Menjadi perusahaan terkemuka dan terpercaya di bidang penyediaan material konstruksi, jasa konstruksi, dan solusi infrastruktur yang berkualitas, berkelanjutan, dan berdaya saing nasional."
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                    <img class="w-full h-full object-cover rounded-lg" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop" alt="Office">
+                    <img class="w-full h-full object-cover rounded-lg mt-8" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop" alt="Construction">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values Section -->
+    <section class="bg-white py-16 -mt-10 relative z-10 rounded-t-3xl mx-2 md:mx-0 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+        <div class="px-4 mx-auto max-w-screen-xl">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-3 px-3 py-1 rounded">MISI</span>
+                        Misi Kami
+                    </h3>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Menyediakan produk dan layanan konstruksi yang bermutu tinggi, tepat waktu, dan sesuai kebutuhan pelanggan.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Mengembangkan sistem distribusi dan produksi yang efisien, profesional, dan berstandar.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Memberikan solusi konstruksi dan IPAL yang inovatif, aman, dan ramah lingkungan.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Membangun hubungan jangka panjang dengan pelanggan berdasarkan kepercayaan dan profesionalisme.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Meningkatkan kompetensi SDM untuk mendukung pertumbuhan perusahaan yang berkelanjutan.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center">
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-semibold mr-3 px-3 py-1 rounded">VALUES</span>
+                        Nilai Perusahaan
+                    </h3>
+                    <div class="grid gap-4">
+                        <div class="p-4 border border-gray-100 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition">
+                            <h4 class="font-bold text-gray-900">Integritas</h4>
+                            <p class="text-sm text-gray-600">Menjunjung tinggi kejujuran, etika, dan tanggung jawab dalam setiap aktivitas.</p>
+                        </div>
+                        <div class="p-4 border border-gray-100 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition">
+                            <h4 class="font-bold text-gray-900">Profesionalisme</h4>
+                            <p class="text-sm text-gray-600">Bekerja secara kompeten, disiplin, dan berorientasi pada hasil terbaik.</p>
+                        </div>
+                        <div class="p-4 border border-gray-100 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition">
+                            <h4 class="font-bold text-gray-900">Kualitas & Komitmen</h4>
+                            <p class="text-sm text-gray-600">Mengutamakan mutu produk dan memberikan layanan terbaik demi kepercayaan pelanggan.</p>
+                        </div>
+                        <div class="p-4 border border-gray-100 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition">
+                            <h4 class="font-bold text-gray-900">Inovasi & Keberlanjutan</h4>
+                            <p class="text-sm text-gray-600">Terus berinovasi dan mendukung pembangunan yang berwawasan lingkungan.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
-                <img class="w-full h-full object-cover rounded-lg transform translate-y-4" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop" alt="Office">
-                <img class="w-full h-full object-cover rounded-lg transform -translate-y-4" src="https://images.unsplash.com/photo-1590644365607-1c5a38fc43e0?q=80&w=600&auto=format&fit=crop" alt="Construction">
-            </div>
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="bg-gray-50 py-16">
         <div class="px-4 mx-auto max-w-screen-xl">
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="mb-4 text-3xl md:text-4xl font-extrabold text-blue-900">Produk & Layanan</h2>
-                <p class="text-gray-500">Solusi lengkap untuk kebutuhan konstruksi Anda[cite: 36].</p>
+                <p class="text-gray-500">Solusi lengkap untuk kebutuhan konstruksi Anda.</p>
             </div>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-2 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border-t-4 border-blue-600" data-aos="fade-up">
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Material Bangunan</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Baja IWF, UNP, CNP</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Besi Beton & Baja Ringan</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Gypsum & Aksesoris</li>
-                    </ul>
+                    <p class="text-sm text-gray-600">Baja IWF, UNP, CNP, Besi Beton, Baja Ringan, Gypsum.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-2 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Sistem Perpipaan</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pipa PVC, PPR, HDPE</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pipa Spiral & Hitam</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pipa Galvanis & SCH</li>
-                    </ul>
+                    <p class="text-sm text-gray-600">Pipa PVC, PPR, HDPE, Spiral, Hitam, Galvanis.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-2 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Produsen IPAL</h3>
-                    <p class="text-sm text-gray-600">Solusi perencanaan, produksi, dan instalasi IPAL yang ramah lingkungan untuk industri dan komersial [cite: 54-55].</p>
+                    <p class="text-sm text-gray-600">Solusi instalasi IPAL ramah lingkungan.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-2 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="400">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Jasa Konstruksi</h3>
-                    <p class="text-sm text-gray-600">Pelaksanaan konstruksi dengan tenaga profesional dan pengawasan terstruktur [cite: 56-57].</p>
+                    <p class="text-sm text-gray-600">Pelaksanaan konstruksi profesional.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-2 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="500">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="400">
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Konsultan Perencana</h3>
-                    <p class="text-sm text-gray-600">Layanan konsultasi dan perencanaan teknis dari tahap konsep hingga detail [cite: 58-59].</p>
+                    <p class="text-sm text-gray-600">Perencanaan teknis dari konsep hingga detail.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-2 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="600">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="500">
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Finishing & Interior</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Granit & Keramik</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Sanitary & MEP</li>
-                    </ul>
+                    <p class="text-sm text-gray-600">Granit, Keramik, Sanitary, MEP.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" class="bg-white py-16 border-t border-gray-100">
         <div class="px-4 mx-auto max-w-screen-xl">
             <div class="flex justify-between items-end mb-12" data-aos="fade-up">
@@ -195,50 +250,66 @@
             <div class="swiper mySwiper w-full h-auto pb-12" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide h-auto">
-                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col">
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition">
                             <div class="h-48 overflow-hidden relative group">
                                 <img src="https://images.unsplash.com/photo-1590644365607-1c5a38fc43e0?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Proyek">
                                 <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Konstruksi</span>
                             </div>
                             <div class="p-5 flex-1">
                                 <h3 class="font-bold text-lg text-gray-900 mb-2">Gudang Logistik Cikembar</h3>
-                                <p class="text-sm text-gray-500 line-clamp-3">Pekerjaan konstruksi baja berat dan pemasangan atap gudang seluas 500m2.</p>
+                                <p class="text-sm text-gray-500">Pekerjaan konstruksi baja berat.</p>
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide h-auto">
-                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col">
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition">
                             <div class="h-48 overflow-hidden relative group">
                                 <img src="https://images.unsplash.com/photo-1518709414768-a88986a455b1?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Proyek">
                                 <span class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">Supply</span>
                             </div>
                             <div class="p-5 flex-1">
                                 <h3 class="font-bold text-lg text-gray-900 mb-2">Supply Besi Beton RSUD</h3>
-                                <p class="text-sm text-gray-500 line-clamp-3">Pengadaan 200 ton besi beton ulir berbagai ukuran untuk pembangunan gedung baru.</p>
+                                <p class="text-sm text-gray-500">Pengadaan 200 ton besi beton ulir.</p>
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide h-auto">
-                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col">
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition">
                             <div class="h-48 overflow-hidden relative group">
                                 <img src="https://images.unsplash.com/photo-1605647540924-852290f6b0d5?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Proyek">
                                 <span class="absolute top-2 right-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">IPAL</span>
                             </div>
                             <div class="p-5 flex-1">
                                 <h3 class="font-bold text-lg text-gray-900 mb-2">Instalasi IPAL Pabrik</h3>
-                                <p class="text-sm text-gray-500 line-clamp-3">Perencanaan sistem Biofilter Anaerob-Aerob kapasitas 50 m3/hari.</p>
+                                <p class="text-sm text-gray-500">Perencanaan sistem Biofilter.</p>
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide h-auto">
-                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col">
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition">
                             <div class="h-48 overflow-hidden relative group">
-                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Proyek">
+                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Proyek">
                                 <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Renovasi</span>
                             </div>
                             <div class="p-5 flex-1">
                                 <h3 class="font-bold text-lg text-gray-900 mb-2">Renovasi Gedung Kantor</h3>
-                                <p class="text-sm text-gray-500 line-clamp-3">Pekerjaan interior dan finishing lantai granit area lobby.</p>
+                                <p class="text-sm text-gray-500">Pekerjaan interior dan finishing area lobby.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition">
+                            <div class="h-48 overflow-hidden relative group">
+                                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Proyek">
+                                <span class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">Konstruksi</span>
+                            </div>
+                            <div class="p-5 flex-1">
+                                <h3 class="font-bold text-lg text-gray-900 mb-2">Jembatan Desa Cisaat</h3>
+                                <p class="text-sm text-gray-500">Konstruksi jembatan penghubung antar desa.</p>
                             </div>
                         </div>
                     </div>
@@ -248,68 +319,67 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer id="contact" class="bg-gray-900 text-white border-t border-gray-800">
         <div class="mx-auto w-full max-w-screen-xl px-4 py-12">
-            <div class="md:grid md:grid-cols-4 md:gap-8">
-                
-                <div class="mb-8 md:mb-0 md:col-span-2">
-                    <a href="#" class="flex items-center space-x-3 mb-4">
-                        <img src="./assets/logo-1.png" class="h-10 grayscale brightness-200" alt="Logo BPP">
-                        <span class="self-center text-2xl font-bold whitespace-nowrap text-white">PT BPP</span>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 text-center md:text-left">
+                <div class="md:col-span-2 flex flex-col items-center md:items-start">
+                    <a href="#" class="flex items-center gap-3 mb-4">
+                        <img src="./assets/logo-2.png" class="h-12 w-auto object-contain" alt="Logo BPP">
                     </a>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm mx-auto md:mx-0">
                         Mitra terpercaya penyediaan material konstruksi, jasa konstruksi, dan solusi infrastruktur berkualitas di Indonesia. "All You Need Here".
                     </p>
                     
-                    <div class="flex space-x-5">
-                        <a href="https://instagram.com/bpp.sukabumi" class="text-gray-400 hover:text-pink-500 transition duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468.99c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
-                            <span class="sr-only">Instagram</span>
+                    <div class="flex gap-6 justify-center md:justify-start w-full">
+                        <a href="https://instagram.com/bpp.sukabumi" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468.99c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-blue-600 transition duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                            <span class="sr-only">Facebook</span>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.84-2.92 6.48-1.48 1.34-3.48 2.15-5.55 2.15-2.64 0-5.06-1.16-6.66-3.03C.3 18.59-.26 16.7.07 14.65c.34-2.12 1.5-4 3.22-5.18 1.63-1.12 3.63-1.61 5.61-1.39.52.06 1.04.18 1.53.37v4.13a5.57 5.57 0 00-1.29-.16c-1.39 0-2.65.65-3.45 1.75-.81 1.12-.96 2.59-.44 3.86.53 1.28 1.72 2.19 3.09 2.28 1.76.13 3.4-.9 4.14-2.52.26-.59.38-1.23.37-1.88V.02z"/></svg>
-                           <span class="sr-only">TikTok</span>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.84-2.92 6.48-1.48 1.34-3.48 2.15-5.55 2.15-2.64 0-5.06-1.16-6.66-3.03C.3 18.59-.26 16.7.07 14.65c.34-2.12 1.5-4 3.22-5.18 1.63-1.12 3.63-1.61 5.61-1.39.52.06 1.04.18 1.53.37v4.13a5.57 5.57 0 00-1.29-.16c-1.39 0-2.65.65-3.45 1.75-.81 1.12-.96 2.59-.44 3.86.53 1.28 1.72 2.19 3.09 2.28 1.76.13 3.4-.9 4.14-2.52.26-.59.38-1.23.37-1.88V.02z"/></svg>
                         </a>
                     </div>
                 </div>
 
                 <div>
-                    <h2 class="mb-4 text-sm font-semibold text-gray-200 uppercase tracking-wider">Navigasi</h2>
-                    <ul class="text-gray-400 font-medium space-y-2">
-                        <li><a href="#home" class="hover:text-blue-400 transition">Beranda</a></li>
-                        <li><a href="#about" class="hover:text-blue-400 transition">Tentang Kami</a></li>
-                        <li><a href="#services" class="hover:text-blue-400 transition">Layanan & Produk</a></li>
-                        <li><a href="#projects" class="hover:text-blue-400 transition">Portofolio</a></li>
+                    <h2 class="mb-4 text-sm font-semibold text-gray-200 uppercase tracking-wider text-center md:text-left">Navigasi</h2>
+                    <ul class="text-gray-400 font-medium space-y-3">
+                        <li><a href="#home" class="hover:text-white transition-colors duration-300">Beranda</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors duration-300">Tentang Kami</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors duration-300">Layanan & Produk</a></li>
+                        <li><a href="#projects" class="hover:text-white transition-colors duration-300">Portofolio</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h2 class="mb-4 text-sm font-semibold text-gray-200 uppercase tracking-wider">Hubungi Kami</h2>
+                    <h2 class="mb-4 text-sm font-semibold text-gray-200 uppercase tracking-wider text-center md:text-left">Hubungi Kami</h2>
                     <ul class="text-gray-400 font-medium space-y-4">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            <span>
-                                <a href="https://wa.me/6281298352065" class="hover:text-green-400 block">0812-9835-2065</a>
-                                <a href="https://wa.me/628551224688" class="hover:text-green-400 block mt-1">0855-1224-688</a>
-                            </span>
+                        <li class="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3">
+                            <div class="flex-shrink-0 mt-1"> 
+                                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <a href="https://wa.me/6281298352065" class="hover:text-green-400 block transition-colors">0812-9835-2065</a>
+                                <a href="https://wa.me/628551224688" class="hover:text-green-400 block mt-1 transition-colors">0855-1224-688</a>
+                            </div>
                         </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <a href="mailto:bppsukabumi.supplier@gmail.com" class="hover:text-blue-400 break-all">bppsukabumi@gmail.com</a>
+                        <li class="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3">
+                            <div class="flex-shrink-0 mt-1">
+                                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <a href="mailto:bppsukabumi.supplier@gmail.com" class="hover:text-blue-400 break-all transition-colors">bppsukabumi@gmail.com</a>
                         </li>
                     </ul>
                 </div>
-
             </div>
             
-            <hr class="my-8 border-gray-800" />
+            <hr class="my-8 border-gray-800">
             
-            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <span class="mb-2 md:mb-0">© 2026 PT Bojongkokosan Putra Perkasa. All Rights Reserved.</span>
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 text-center md:text-left gap-2 md:gap-0">
+                <span>© 2026 PT Bojongkokosan Putra Perkasa. All Rights Reserved.</span>
                 <span class="flex items-center space-x-1">
                     <span>Designed with</span>
                     <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -318,24 +388,23 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // 1. Inisialisasi Animasi AOS
-        AOS.init({
-            once: true, // Animasi cuma sekali saat scroll ke bawah
-            offset: 100, // Mulai animasi 100px sebelum elemen muncul
-        });
+        AOS.init({ once: true, offset: 100 });
 
-        // 2. Inisialisasi Swiper (Carousel)
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1, // Default HP: 1 Kartu
-            spaceBetween: 20, // Jarak antar kartu
-            loop: true, // Bisa muter terus
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -344,22 +413,79 @@
                 nextEl: ".swiper-button-next-custom",
                 prevEl: ".swiper-button-prev-custom",
             },
-            // Responsif Breakpoints (Logika HP vs Laptop)
             breakpoints: {
                 640: {
                     slidesPerView: 1,
                     spaceBetween: 20,
                 },
                 768: {
-                    slidesPerView: 2, // Tablet: 2 Kartu
+                    slidesPerView: 2,
                     spaceBetween: 30,
                 },
                 1024: {
-                    slidesPerView: 3, // Laptop: 3 Kartu
+                    slidesPerView: 3,
                     spaceBetween: 30,
                 },
             },
         });
     </script>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50 backdrop-blur-sm">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-xl shadow-2xl dark:bg-gray-700">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Hubungi Kami</h3>
+                    <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="contact-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <div class="p-4 md:p-5">
+                    <p class="text-sm font-normal text-gray-500 mb-4">Silakan pilih metode komunikasi yang paling nyaman untuk Anda:</p>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://wa.me/6281298352065" target="_blank" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-green-100 hover:text-green-700 group hover:shadow transition">
+                                <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                <div class="flex flex-col">
+                                    <span>WhatsApp Admin 1</span>
+                                    <span class="text-xs font-normal text-gray-500">0812-9835-2065</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/628551224688" target="_blank" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-green-100 hover:text-green-700 group hover:shadow transition">
+                                <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                <div class="flex flex-col">
+                                    <span>WhatsApp Admin 2</span>
+                                    <span class="text-xs font-normal text-gray-500">0855-1224-688</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:bppsukabumi.supplier@gmail.com" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-blue-100 hover:text-blue-700 group hover:shadow transition">
+                                <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                <span class="flex-1 whitespace-nowrap">Kirim Email</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/bpp.sukabumi" target="_blank" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-pink-100 hover:text-pink-700 group hover:shadow transition">
+                                <svg class="w-6 h-6 text-pink-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468.99c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+                                <span class="flex-1 whitespace-nowrap">Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://tiktok.com/@bppsukabumi.supplier" target="_blank" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow transition">
+                                <svg class="w-6 h-6 text-gray-900 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.84-2.92 6.48-1.48 1.34-3.48 2.15-5.55 2.15-2.64 0-5.06-1.16-6.66-3.03C.3 18.59-.26 16.7.07 14.65c.34-2.12 1.5-4 3.22-5.18 1.63-1.12 3.63-1.61 5.61-1.39.52.06 1.04.18 1.53.37v4.13a5.57 5.57 0 00-1.29-.16c-1.39 0-2.65.65-3.45 1.75-.81 1.12-.96 2.59-.44 3.86.53 1.28 1.72 2.19 3.09 2.28 1.76.13 3.4-.9 4.14-2.52.26-.59.38-1.23.37-1.88V.02z"/></svg>
+                                <span class="flex-1 whitespace-nowrap">TikTok</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
