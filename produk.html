@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk - PT BPP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1f2937; }
+        /* Menggunakan font Poppins agar tebal dan tegas */
+        h1, h2, .font-elegant { font-family: 'Poppins', sans-serif; }
+        
+        /* Sembunyikan scrollbar di menu filter HP */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Efek Hover Gambar */
+        .img-wrapper { overflow: hidden; border-radius: 1rem; background-color: #f3f4f6; }
+        .img-wrapper img { transition: transform 0.7s ease; }
+        .product-card:hover .img-wrapper img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="bg-white fixed w-full z-50 top-0 border-b border-gray-100 py-4 px-6 md:px-12">
+        <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="./assets/logo-1.png" class="h-7 md:h-9 w-auto object-contain" alt="Logo BPP">
+                <span class="font-bold text-blue-900 tracking-wide text-sm md:text-base font-poppins">PT Bojongkokosan Putra Perkasa</span>
+            </a>
+            
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
+                <a href="index.html" class="hover:text-blue-900 transition">Beranda</a>
+                <a href="produk.html" class="text-blue-900">Katalog</a>
+            </div>
+
+            <div class="flex items-center gap-4 text-gray-600">
+                <a href="index.html" class="md:hidden text-xs font-bold uppercase hover:text-blue-900">Kembali</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="loading" class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center">
+        <div class="animate-spin h-8 w-8 border-4 border-blue-900 border-t-transparent rounded-full mb-4"></div>
+        <p class="text-xs text-gray-500 font-bold tracking-widest uppercase">Memuat Katalog...</p>
+    </div>
+
+    <main id="konten-katalog" class="flex-grow pt-32 pb-24 px-6 md:px-12 max-w-[1200px] w-full mx-auto hidden">
+        
+        <div class="mb-10">
+            <div class="flex space-x-6 md:space-x-10 border-b border-gray-200 overflow-x-auto hide-scroll text-sm md:text-base whitespace-nowrap" id="wadah-filter">
+                <button onclick="filterKategori('Semua', this)" class="filter-btn pb-3 border-b-2 border-blue-900 text-blue-900 font-bold transition">Semua Produk</button>
+                <button onclick="filterKategori('Besi & Baja', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Besi & Baja</button>
+                <button onclick="filterKategori('Perpipaan', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Perpipaan</button>
+                <button onclick="filterKategori('Instalasi IPAL', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Instalasi IPAL</button>
+                <button onclick="filterKategori('Material Sipil', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Material Sipil</button>
+            </div>
+            
+            <div class="flex justify-between items-center mt-6 text-sm font-medium text-gray-500">
+                <span id="txt-total-produk">0 Produk</span>
+                <div class="flex items-center gap-2 cursor-pointer hover:text-blue-900 transition">
+                    <span>Urutkan: Terbaru</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="grid-produk" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-12">
+            </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-10 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6 md:px-12 text-center md:text-left text-xs font-medium text-gray-400">
+            © 2026 PT Bojongkokosan Putra Perkasa.
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // ==========================================
+        // PENTING: GANTI CONFIG INI DENGAN MILIK ANDA
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
+            authDomain: "bpp-produk.firebaseapp.com",
+            projectId: "bpp-produk",
+            storageBucket: "bpp-produk.firebasestorage.app",
+            messagingSenderId: "38435149459",
+            appId: "1:38435149459:web:d487394a5886221a9adf66"
+         };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let semuaProdukDatabase = [];
+
+        async function loadProduk() {
+            try {
+                const q = query(collection(db, "produk"), orderBy("tanggalDitambahkan", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                querySnapshot.forEach((doc) => {
+                    semuaProdukDatabase.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderProduk(semuaProdukDatabase);
+
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('konten-katalog').classList.remove('hidden');
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('loading').innerHTML = '<p class="text-red-500 font-bold">Gagal memuat katalog jaringan.</p>';
+            }
+        }
+
+        function renderProduk(dataProduk) {
+            const wadahGrid = document.getElementById('grid-produk');
+            const txtTotal = document.getElementById('txt-total-produk');
+            
+            wadahGrid.innerHTML = '';
+            txtTotal.innerText = `${dataProduk.length} Produk`;
+
+            if(dataProduk.length === 0) {
+                wadahGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 font-medium py-10">Tidak ada produk di kategori ini.</p>';
+                return;
+            }
+
+            dataProduk.forEach(item => {
+                const gambarSampul = (item.gambar && item.gambar.length > 0) ? item.gambar[0] : '';
+                
+                let labelHtml = item.label ? `<span class="absolute top-3 left-3 bg-white/90 backdrop-blur text-blue-900 text-[9px] md:text-[10px] font-extrabold px-2.5 py-1 rounded shadow-sm uppercase tracking-widest z-10">${item.label}</span>` : '';
+
+                const htmlKartu = `
+                    <a href="detail.html?id=${item.id}" class="product-card group block cursor-pointer">
+                        <div class="relative w-full aspect-[4/5] img-wrapper mb-4 border border-gray-100 shadow-sm">
+                            ${labelHtml}
+                            <img src="${gambarSampul}" class="w-full h-full object-cover" alt="${item.nama}">
+                        </div>
+                        
+                        <div class="px-1 flex flex-col">
+                            <span class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mb-1">${item.kategori}</span>
+                            <h3 class="text-sm md:text-base font-bold text-gray-900 leading-snug truncate font-elegant group-hover:text-blue-700 transition">${item.nama}</h3>
+                            <span class="text-xs font-semibold text-gray-400 mt-2 flex items-center group-hover:text-blue-700 transition">
+                                Lihat Detail 
+                                <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                `;
+                wadahGrid.innerHTML += htmlKartu;
+            });
+        }
+
+        window.filterKategori = function(kategori, elemenTombol) {
+            const semuaTombol = document.querySelectorAll('.filter-btn');
+            semuaTombol.forEach(btn => {
+                btn.classList.remove('border-blue-900', 'text-blue-900', 'font-bold');
+                btn.classList.add('border-transparent', 'text-gray-400', 'font-semibold');
+            });
+            
+            elemenTombol.classList.remove('border-transparent', 'text-gray-400', 'font-semibold');
+            elemenTombol.classList.add('border-blue-900', 'text-blue-900', 'font-bold');
+
+            if (kategori === 'Semua') {
+                renderProduk(semuaProdukDatabase);
+            } else {
+                const dataTersaring = semuaProdukDatabase.filter(item => item.kategori === kategori);
+                renderProduk(dataTersaring);
+            }
+        }
+
+        loadProduk();
+    </script>
+</body>
+</html>
