@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Projek BPP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .ql-container { font-family: 'Inter', sans-serif; font-size: 15px; background: #fff; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+        .ql-toolbar { background: #f9fafb; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; border-color: #d1d5db !important; }
+        .ql-container.ql-snow { border-color: #d1d5db !important; }
+        .ql-editor { min-height: 250px; line-height: 1.8; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto mb-6 flex flex-wrap gap-3">
+    <a href="admin.html" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 font-semibold rounded-lg transition">🏠 Dashboard</a>
+    <a href="admin-produk.html" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 font-semibold rounded-lg transition">📦 Kelola Produk</a>
+    <a href="admin-artikel.html" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 font-semibold rounded-lg transition">📄 Kelola Artikel</a>
+    <a href="admin-projek.html" class="px-4 py-2 bg-blue-900 text-white font-semibold rounded-lg shadow-md pointer-events-none">🏗️ Kelola Projek</a>
+    <button onclick="logoutAdmin()" class="ml-auto px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 font-semibold rounded-lg transition">Logout</button>
+    </div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-8">
+        
+        <div class="xl:col-span-7 bg-white p-6 rounded-xl shadow-lg h-fit">
+            <h2 id="judul-form" class="text-xl font-bold mb-6 text-blue-900 border-b pb-3">Tambah Portofolio Projek</h2>
+            
+            <div id="alert-sukses" class="hidden p-3 mb-4 text-sm text-green-800 rounded-lg bg-green-50 border border-green-200" role="alert">
+                <span class="font-bold">Berhasil!</span> Data projek telah disimpan.
+            </div>
+
+            <form id="form-projek" class="space-y-5">
+                <input type="hidden" id="input-id">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Nama Projek</label>
+                        <input type="text" id="input-judul" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-3" placeholder="Contoh: Pembangunan Jembatan Tol Bocimi" required>
+                    </div>
+
+                    <div>
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Kategori</label>
+                        <select id="input-kategori" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-3" required>
+                            <option value="Infrastruktur">Infrastruktur</option>
+                            <option value="Bangunan Komersial">Bangunan Komersial</option>
+                            <option value="Fasilitas Publik">Fasilitas Publik</option>
+                            <option value="Pabrik & Industri">Pabrik & Industri</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Status / Tahun</label>
+                        <input type="text" id="input-tahun" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-3" placeholder="Contoh: Selesai 2025" required>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Nama Klien / Kontraktor</label>
+                        <input type="text" id="input-klien" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-3" placeholder="Contoh: PT Waskita Karya (Persero)" required>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <label class="block mb-1 text-sm font-bold text-blue-900">Link URL Gambar Projek</label>
+                    <p class="text-xs text-gray-500 mb-2">Pisahkan dengan <b>koma ( , )</b> jika lebih dari 1 gambar. Gambar pertama jadi sampul.</p>
+                    <textarea id="input-gambar" rows="2" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3" placeholder="https://contoh.com/jembatan1.jpg, https://contoh.com/jembatan2.jpg" required></textarea>
+                </div>
+                
+                <div>
+                    <label class="block mb-2 text-sm font-semibold text-gray-900">Deskripsi Projek (Material BPP yang digunakan, dll)</label>
+                    <div id="editor-projek"></div>
+                </div>
+                
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" id="btn-simpan" class="w-full text-white bg-blue-900 hover:bg-blue-800 font-bold rounded-lg text-sm px-5 py-3.5 transition shadow-lg hover:shadow-xl">Simpan Projek</button>
+                    <button type="button" id="btn-batal" class="hidden w-1/3 text-gray-700 bg-gray-200 hover:bg-gray-300 font-bold rounded-lg text-sm px-5 py-3.5 transition">Batal</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="xl:col-span-5 bg-white p-6 rounded-xl shadow-lg h-fit">
+            <h2 class="text-xl font-bold mb-4 text-gray-900 border-b pb-3 flex justify-between items-center">
+                Daftar Projek BPP
+                <span id="total-projek" class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">0 Projek</span>
+            </h2>
+            
+            <div class="overflow-y-auto max-h-[600px] pr-2">
+                <div id="list-projek" class="space-y-4">
+                    <div class="text-center py-8 text-gray-500">Memuat data projek...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var quill = new Quill('#editor-projek', {
+            theme: 'snow',
+            placeholder: 'Jelaskan detail projek dan material BPP apa saja yang disuplai ke sini...',
+            modules: { 
+                toolbar: [['bold', 'italic', 'underline'], [{'list': 'ordered'}, {'list': 'bullet'}], ['clean']] 
+            }
+        });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        // ==========================================
+        // PENTING: GANTI CONFIG FIREBASE ANDA DI SINI
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
+            authDomain: "bpp-produk.firebaseapp.com",
+            projectId: "bpp-produk",
+            storageBucket: "bpp-produk.firebasestorage.app",
+            messagingSenderId: "38435149459",
+            appId: "1:38435149459:web:d487394a5886221a9adf66"
+         };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // SATPAM KEAMANAN: Cek apakah user sudah login
+        onAuthStateChanged(auth, (user) => {
+            if (!user) window.location.replace("login.html");
+        });
+
+        // FUNGSI LOGOUT (Ditempel di tombol atas)
+        window.logoutAdmin = () => {
+            signOut(auth).then(() => window.location.replace("login.html"));
+        };
+
+        const form = document.getElementById('form-projek');
+        const inputId = document.getElementById('input-id');
+        const btnSimpan = document.getElementById('btn-simpan');
+        const btnBatal = document.getElementById('btn-batal');
+        const judulForm = document.getElementById('judul-form');
+        const listProjek = document.getElementById('list-projek');
+        
+        let projekDatabase = []; 
+
+        // ================= LOAD DATA PROJEK =================
+        async function loadDataProjek() {
+            try {
+                const q = query(collection(db, "projek"), orderBy("tanggalDitambahkan", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                listProjek.innerHTML = '';
+                projekDatabase = []; 
+                let count = 0;
+
+                querySnapshot.forEach((docSnap) => {
+                    const item = docSnap.data();
+                    const id = docSnap.id;
+                    projekDatabase.push({ id, ...item }); 
+                    count++;
+
+                    const gambarSampul = (item.gambar && item.gambar.length > 0) ? item.gambar[0] : '';
+
+                    listProjek.innerHTML += `
+                        <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+                            <img src="${gambarSampul}" class="w-20 h-20 rounded-lg object-cover bg-gray-200" alt="Cover">
+                            <div class="flex-1 min-w-0">
+                                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${item.kategori}</span>
+                                <h3 class="text-sm font-bold text-gray-900 line-clamp-1 mt-1 mb-1">${item.judul}</h3>
+                                <p class="text-xs text-gray-500 font-medium">Klien: ${item.klien}</p>
+                                <div class="mt-3 flex gap-3">
+                                    <button onclick="klikEdit('${id}')" class="text-xs font-semibold text-blue-600 hover:underline">Edit</button>
+                                    <button onclick="klikHapus('${id}', '${item.judul.replace(/'/g, "\\'")}')" class="text-xs font-semibold text-red-600 hover:underline">Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('total-projek').innerText = `${count} Projek`;
+
+                if(count === 0){
+                    listProjek.innerHTML = '<div class="text-center py-8 text-gray-500 font-medium">Belum ada portofolio projek.</div>';
+                }
+
+            } catch (error) {
+                console.error(error);
+                listProjek.innerHTML = '<div class="text-center py-8 text-red-500 font-bold">Gagal memuat data dari database.</div>';
+            }
+        }
+
+        // ================= SIMPAN / UPDATE PROJEK =================
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const isiHtml = quill.root.innerHTML;
+            if (quill.getText().trim() === '') return alert("Deskripsi projek kosong!");
+
+            btnSimpan.innerHTML = "Memproses...";
+            btnSimpan.disabled = true;
+
+            const gambarMentah = document.getElementById('input-gambar').value;
+            const arrayGambar = gambarMentah.split(',').map(url => url.trim()).filter(url => url !== "");
+
+            const dataSimpan = {
+                judul: document.getElementById('input-judul').value,
+                kategori: document.getElementById('input-kategori').value,
+                klien: document.getElementById('input-klien').value,
+                tahun: document.getElementById('input-tahun').value,
+                gambar: arrayGambar,
+                deskripsi: isiHtml
+            };
+
+            const editId = inputId.value;
+
+            try {
+                if (editId === "") {
+                    dataSimpan.tanggalDitambahkan = new Date();
+                    await addDoc(collection(db, "projek"), dataSimpan);
+                } else {
+                    await updateDoc(doc(db, "projek", editId), dataSimpan);
+                }
+
+                resetForm();
+                loadDataProjek(); 
+                
+                const alertEl = document.getElementById('alert-sukses');
+                alertEl.classList.remove('hidden');
+                setTimeout(() => alertEl.classList.add('hidden'), 4000);
+
+            } catch (error) {
+                console.error(error);
+                alert("Gagal menyimpan portofolio projek!");
+            } finally {
+                btnSimpan.innerHTML = "Simpan Projek";
+                btnSimpan.disabled = false;
+            }
+        });
+
+        // ================= HAPUS =================
+        window.klikHapus = async (id, judul) => {
+            const yakin = confirm(`Hapus permanen projek ini?\n\n"${judul}"`);
+            if(yakin) {
+                try {
+                    await deleteDoc(doc(db, "projek", id));
+                    loadDataProjek(); 
+                } catch (error) {
+                    alert("Gagal menghapus projek.");
+                    console.error(error);
+                }
+            }
+        };
+
+        // ================= EDIT =================
+        window.klikEdit = (id) => {
+            const item = projekDatabase.find(p => p.id === id);
+            if(!item) return;
+
+            inputId.value = item.id;
+            document.getElementById('input-judul').value = item.judul;
+            document.getElementById('input-kategori').value = item.kategori;
+            document.getElementById('input-klien').value = item.klien;
+            document.getElementById('input-tahun').value = item.tahun;
+            document.getElementById('input-gambar').value = item.gambar.join(", ");
+            
+            quill.root.innerHTML = item.deskripsi;
+
+            judulForm.innerText = "Edit Portofolio Projek";
+            judulForm.classList.replace('text-blue-900', 'text-yellow-600');
+            btnSimpan.innerText = "Simpan Perubahan";
+            btnSimpan.classList.replace('bg-blue-900', 'bg-yellow-500');
+            btnSimpan.classList.replace('hover:bg-blue-800', 'hover:bg-yellow-600');
+            btnBatal.classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // ================= BATAL EDIT =================
+        function resetForm() {
+            form.reset();
+            inputId.value = "";
+            quill.root.innerHTML = "";
+            
+            judulForm.innerText = "Tambah Portofolio Projek";
+            judulForm.classList.replace('text-yellow-600', 'text-blue-900');
+            btnSimpan.innerText = "Simpan Projek";
+            btnSimpan.classList.replace('bg-yellow-500', 'bg-blue-900');
+            btnSimpan.classList.replace('hover:bg-yellow-600', 'hover:bg-blue-800');
+            btnBatal.classList.add('hidden');
+        }
+
+        btnBatal.addEventListener('click', resetForm);
+
+        // Load data awal
+        loadDataProjek();
+    </script>
+</body>
+</html>

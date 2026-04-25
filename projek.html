@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Projek - BPP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Navbar Sederhana (opsional, sesuaikan dengan website Anda) -->
+    <div class="max-w-7xl mx-auto mb-8">
+        <a href="index.html" class="text-blue-800 hover:underline">← Kembali ke Beranda</a>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-4">Portofolio Projek BPP</h1>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Berbagai proyek konstruksi & infrastruktur yang telah menggunakan material dari PT Bangun Perkasa Perkasa (BPP).</p>
+
+        <!-- Grid Projek akan diisi JavaScript -->
+        <div id="projek-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="text-center py-20 col-span-full text-gray-500">Memuat data projek...</div>
+        </div>
+    </div>
+
+    <!-- Modal Detail Projek (Opsional, muncul saat klik "Lihat Detail") -->
+    <div id="modal-detail" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white p-4 border-b flex justify-between items-center">
+                <h3 id="modal-judul" class="text-xl font-bold text-blue-900">Detail Projek</h3>
+                <button onclick="tutupModal()" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <div id="modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // Konfigurasi Firebase (sama dengan admin)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
+            authDomain: "bpp-produk.firebaseapp.com",
+            projectId: "bpp-produk",
+            storageBucket: "bpp-produk.firebasestorage.app",
+            messagingSenderId: "38435149459",
+            appId: "1:38435149459:web:d487394a5886221a9adf66"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function tampilkanProjek() {
+            const grid = document.getElementById('projek-grid');
+            grid.innerHTML = '<div class="text-center py-20 col-span-full text-gray-500">Memuat data projek...</div>';
+
+            try {
+                const q = query(collection(db, "projek"), orderBy("tanggalDitambahkan", "desc"));
+                const snapshot = await getDocs(q);
+                
+                if (snapshot.empty) {
+                    grid.innerHTML = '<div class="text-center py-20 col-span-full text-gray-500">Belum ada portofolio projek. Silakan cek lagi nanti.</div>';
+                    return;
+                }
+
+                grid.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const p = doc.data();
+                    const id = doc.id;
+                    const cover = (p.gambar && p.gambar.length > 0) ? p.gambar[0] : 'https://placehold.co/600x400?text=No+Image';
+                    
+                    const card = `
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover border border-gray-100">
+                            <img src="${cover}" class="w-full h-56 object-cover" alt="${p.judul}">
+                            <div class="p-5">
+                                <div class="flex justify-between items-start">
+                                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">${p.kategori || 'Projek'}</span>
+                                    <span class="text-xs text-gray-500">${p.tahun || ''}</span>
+                                </div>
+                                <h3 class="text-lg font-bold mt-2 mb-1 text-gray-800">${p.judul}</h3>
+                                <p class="text-sm text-gray-500 mb-3">Klien: ${p.klien || '-'}</p>
+                                <p class="text-gray-600 text-sm line-clamp-3">${stripHtml(p.deskripsi || '')}</p>
+                                <button onclick="bukaModal('${id}')" class="mt-4 text-blue-700 font-semibold text-sm hover:underline">Lihat Detail →</button>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                });
+
+                // Simpan data projek ke variabel global agar bisa diakses modal
+                window.projekData = {};
+                snapshot.forEach(doc => {
+                    window.projekData[doc.id] = doc.data();
+                });
+
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<div class="text-center py-20 col-span-full text-red-500">Gagal memuat data projek. Periksa koneksi.</div>';
+            }
+        }
+
+        function stripHtml(html) {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            return div.textContent || div.innerText || '';
+        }
+
+        window.bukaModal = (id) => {
+            const projek = window.projekData[id];
+            if (!projek) return;
+
+            document.getElementById('modal-judul').innerText = projek.judul;
+            const modalBody = document.getElementById('modal-body');
+            
+            // Galeri gambar (jika lebih dari 1)
+            let galeriHtml = '';
+            if (projek.gambar && projek.gambar.length) {
+                galeriHtml = `<div class="flex gap-2 overflow-x-auto pb-4 mb-4">
+                    ${projek.gambar.map(url => `<img src="${url}" class="h-32 w-auto rounded-lg object-cover shadow" alt="gambar">`).join('')}
+                </div>`;
+            }
+
+            modalBody.innerHTML = `
+                ${galeriHtml}
+                <div class="grid grid-cols-2 gap-3 text-sm mb-4 bg-gray-50 p-3 rounded-lg">
+                    <div><span class="font-bold">Kategori:</span> ${projek.kategori || '-'}</div>
+                    <div><span class="font-bold">Tahun:</span> ${projek.tahun || '-'}</div>
+                    <div class="col-span-2"><span class="font-bold">Klien:</span> ${projek.klien || '-'}</div>
+                </div>
+                <div class="prose max-w-none">
+                    ${projek.deskripsi || 'Deskripsi tidak tersedia.'}
+                </div>
+            `;
+
+            document.getElementById('modal-detail').classList.remove('hidden');
+            document.getElementById('modal-detail').classList.add('flex');
+        };
+
+        window.tutupModal = () => {
+            document.getElementById('modal-detail').classList.remove('flex');
+            document.getElementById('modal-detail').classList.add('hidden');
+        };
+
+        tampilkanProjek();
+    </script>
+</body>
+</html>

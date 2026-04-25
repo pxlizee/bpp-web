@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baca Artikel - PT BPP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #111827; }
+        
+        /* Styling Khusus Konten Artikel (Rich Text dari Quill) */
+        .konten-isi { line-height: 1.8; color: #374151; font-size: 1.1rem; }
+        .konten-isi p { margin-bottom: 1.5rem; }
+        .konten-isi h2 { font-size: 1.75rem; font-weight: 800; margin-top: 2.5rem; margin-bottom: 1rem; color: #111827; }
+        .konten-isi h3 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; color: #111827; }
+        .konten-isi strong { color: #111827; font-weight: 700; }
+        .konten-isi ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .konten-isi ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .konten-isi blockquote { border-left: 4px solid #1e3a8a; padding-left: 1.5rem; font-style: italic; color: #4b5563; margin: 2rem 0; }
+        .konten-isi a { color: #1e40af; text-decoration: underline; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 top-0 border-b border-gray-100 py-4 px-6 md:px-12">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="./assets/logo-1.png" class="h-8 w-auto object-contain" alt="Logo BPP">
+                <span class="font-extrabold text-blue-900 tracking-tight">PT Bojongkokosan Putra Perkasa</span>
+            </a>
+            <a href="artikel.html" class="text-sm font-bold text-gray-500 hover:text-blue-900 transition flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                Kembali
+            </a>
+        </div>
+    </nav>
+
+    <div id="loading" class="flex-grow flex flex-col items-center justify-center pt-20">
+        <div class="animate-spin h-10 w-10 border-4 border-blue-900 border-t-transparent rounded-full"></div>
+    </div>
+
+    <main id="konten-artikel" class="hidden flex-grow pt-32 pb-24 px-6 max-w-3xl w-full mx-auto">
+        
+        <header class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span id="txt-kategori" class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Kategori</span>
+                <span id="txt-tanggal" class="text-xs text-gray-400 font-medium">1 Januari 2026</span>
+            </div>
+            <h1 id="txt-judul" class="text-3xl md:text-5xl font-extrabold leading-tight text-gray-900 mb-6">
+                Memuat Judul...
+            </h1>
+            <div class="flex items-center gap-3 border-t border-gray-100 pt-6">
+                <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold text-xs">BPP</div>
+                <div>
+                    <p id="txt-penulis" class="text-sm font-bold text-gray-900">Penulis</p>
+                    <p class="text-xs text-gray-500">Tim Konten PT BPP</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10">
+            <img id="img-cover" src="" class="w-full h-auto object-cover max-h-[450px]" alt="Cover">
+        </div>
+
+        <article id="isi-artikel" class="konten-isi">
+            </article>
+
+        <div class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-sm text-gray-500">Bagikan artikel ini jika bermanfaat:</p>
+            <div class="flex gap-4">
+                <button onclick="window.print()" class="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition" title="Cetak Artikel">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                </button>
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link disalin!')" class="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition" title="Salin Link">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-10 mt-auto">
+        <div class="max-w-4xl mx-auto px-6 text-center text-xs font-medium text-gray-400 uppercase tracking-widest">
+            © 2026 PT Bojongkokosan Putra Perkasa
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // CONFIG FIREBASE ANDA
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
+            authDomain: "bpp-produk.firebaseapp.com",
+            projectId: "bpp-produk",
+            storageBucket: "bpp-produk.firebasestorage.app",
+            messagingSenderId: "38435149459",
+            appId: "1:38435149459:web:d487394a5886221a9adf66"
+         };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const idArtikel = urlParams.get('id');
+
+        async function tampilkanArtikel() {
+            if (!idArtikel) {
+                window.location.href = 'artikel.html';
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "artikel", idArtikel);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+
+                    document.getElementById('txt-judul').innerText = data.judul;
+                    document.getElementById('txt-kategori').innerText = data.kategori;
+                    document.getElementById('txt-penulis').innerText = data.penulis;
+                    document.getElementById('img-cover').src = data.gambar_cover;
+                    document.getElementById('isi-artikel').innerHTML = data.isi; // Menggunakan innerHTML karena konten berupa tag HTML
+                    
+                    if(data.tanggalDitambahkan) {
+                        const date = data.tanggalDitambahkan.toDate();
+                        document.getElementById('txt-tanggal').innerText = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                    }
+
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('konten-artikel').classList.remove('hidden');
+                } else {
+                    alert("Artikel tidak ditemukan!");
+                    window.location.href = 'artikel.html';
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Terjadi kesalahan jaringan.");
+            }
+        }
+
+        tampilkanArtikel();
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel & Berita - PT BPP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; color: #1f2937; }
+        h1, h2, h3, .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .img-wrapper { overflow: hidden; border-radius: 1rem 1rem 0 0; background-color: #f3f4f6; }
+        .img-wrapper img { transition: transform 0.5s ease; }
+        .article-card:hover .img-wrapper img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="bg-white fixed w-full z-50 top-0 border-b border-gray-100 py-4 px-6 md:px-12 shadow-sm">
+        <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="./assets/logo-bpp.png" class="h-7 md:h-9 w-auto object-contain" alt="Logo BPP">
+                <span class="font-bold text-blue-900 tracking-wide text-sm md:text-base font-poppins">PT BPP</span>
+            </a>
+            
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
+                <a href="index.html" class="hover:text-blue-900 transition">Beranda</a>
+                <a href="produk.html" class="hover:text-blue-900 transition">Katalog</a>
+                <a href="artikel.html" class="text-blue-900">Artikel</a>
+                <a href="index.html#contact" class="hover:text-blue-900 transition">Kontak</a>
+            </div>
+
+            <div class="flex items-center gap-4 text-gray-600">
+                <a href="index.html" class="md:hidden text-xs font-bold uppercase hover:text-blue-900">Kembali</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="loading" class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center">
+        <div class="animate-spin h-10 w-10 border-4 border-blue-900 border-t-transparent rounded-full mb-4"></div>
+        <p class="text-xs text-gray-500 font-bold tracking-widest uppercase">Memuat Artikel...</p>
+    </div>
+
+    <main id="konten-artikel" class="flex-grow pt-32 pb-24 px-6 md:px-12 max-w-[1200px] w-full mx-auto hidden">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 font-poppins mb-4">Kabar BPP</h1>
+            <p class="text-gray-500 max-w-2xl mx-auto">Informasi terbaru, tips konstruksi, dan update proyek dari tim ahli PT Bojongkokosan Putra Perkasa.</p>
+        </div>
+
+        <div class="mb-10">
+            <div class="flex space-x-6 md:space-x-10 border-b border-gray-200 overflow-x-auto hide-scroll text-sm md:text-base whitespace-nowrap justify-center" id="wadah-filter">
+                <button onclick="filterKategori('Semua', this)" class="filter-btn pb-3 border-b-2 border-blue-900 text-blue-900 font-bold transition">Semua Berita</button>
+                <button onclick="filterKategori('Konstruksi & Material', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Konstruksi & Material</button>
+                <button onclick="filterKategori('Tips & Panduan', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Tips & Panduan</button>
+                <button onclick="filterKategori('Berita Proyek', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Berita Proyek</button>
+                <button onclick="filterKategori('Event Perusahaan', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Event</button>
+            </div>
+            
+            <div class="flex justify-between items-center mt-6 text-sm font-medium text-gray-500">
+                <span id="txt-total-artikel">0 Artikel</span>
+            </div>
+        </div>
+
+        <div id="grid-artikel" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-10 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6 md:px-12 text-center md:text-left text-sm font-medium text-gray-500">
+            © 2026 PT Bojongkokosan Putra Perkasa.
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // ==========================================
+        // PENTING: GANTI CONFIG INI DENGAN MILIK ANDA
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
+            authDomain: "bpp-produk.firebaseapp.com",
+            projectId: "bpp-produk",
+            storageBucket: "bpp-produk.firebasestorage.app",
+            messagingSenderId: "38435149459",
+            appId: "1:38435149459:web:d487394a5886221a9adf66"
+         };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let semuaArtikelDatabase = [];
+
+        // Fungsi Format Tanggal
+        function formatTanggal(dateStr) {
+            const date = new Date(dateStr);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+
+        // Fungsi Ekstrak Teks Singkat (Membuang tag HTML dari Quill)
+        function buatSnippet(htmlString, maxLength = 120) {
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = htmlString;
+            let text = tempDiv.textContent || tempDiv.innerText || "";
+            if (text.length > maxLength) {
+                return text.substring(0, maxLength) + '...';
+            }
+            return text;
+        }
+
+        async function loadArtikel() {
+            try {
+                const q = query(collection(db, "artikel"), orderBy("tanggalDitambahkan", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                querySnapshot.forEach((doc) => {
+                    semuaArtikelDatabase.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderArtikel(semuaArtikelDatabase);
+
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('konten-artikel').classList.remove('hidden');
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('loading').innerHTML = '<p class="text-red-500 font-bold">Gagal memuat artikel.</p>';
+            }
+        }
+
+        function renderArtikel(dataArtikel) {
+            const wadahGrid = document.getElementById('grid-artikel');
+            const txtTotal = document.getElementById('txt-total-artikel');
+            
+            wadahGrid.innerHTML = '';
+            txtTotal.innerText = `${dataArtikel.length} Artikel`;
+
+            if(dataArtikel.length === 0) {
+                wadahGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 font-medium py-10">Belum ada artikel di kategori ini.</p>';
+                return;
+            }
+
+            dataArtikel.forEach(item => {
+                const gambarCover = item.gambar_cover || 'https://via.placeholder.com/600x400?text=BPP+News';
+                const tglPublikasi = item.tanggalDitambahkan ? formatTanggal(item.tanggalDitambahkan.toDate()) : '';
+                const snippetTeks = buatSnippet(item.isi);
+
+                const htmlKartu = `
+                    <a href="baca-artikel.html?id=${item.id}" class="article-card group block bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 flex flex-col h-full">
+                        
+                        <div class="relative w-full aspect-video img-wrapper border-b border-gray-100">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-blue-900 text-[10px] font-extrabold px-3 py-1.5 rounded uppercase tracking-widest z-10 shadow-sm">${item.kategori}</span>
+                            <img src="${gambarCover}" class="w-full h-full object-cover" alt="${item.judul}">
+                        </div>
+                        
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center text-xs text-gray-400 font-medium mb-3 gap-2">
+                                <span>${tglPublikasi}</span>
+                                <span>•</span>
+                                <span>${item.penulis}</span>
+                            </div>
+                            
+                            <h3 class="text-lg md:text-xl font-bold text-gray-900 leading-snug mb-3 font-poppins group-hover:text-blue-700 transition line-clamp-2">${item.judul}</h3>
+                            
+                            <p class="text-sm text-gray-600 line-clamp-3 mb-6 flex-grow">${snippetTeks}</p>
+                            
+                            <span class="text-sm font-bold text-blue-700 flex items-center mt-auto group-hover:translate-x-2 transition-transform">
+                                Baca Selengkapnya 
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                `;
+                wadahGrid.innerHTML += htmlKartu;
+            });
+        }
+
+        window.filterKategori = function(kategori, elemenTombol) {
+            const semuaTombol = document.querySelectorAll('.filter-btn');
+            semuaTombol.forEach(btn => {
+                btn.classList.remove('border-blue-900', 'text-blue-900', 'font-bold');
+                btn.classList.add('border-transparent', 'text-gray-400', 'font-semibold');
+            });
+            
+            elemenTombol.classList.remove('border-transparent', 'text-gray-400', 'font-semibold');
+            elemenTombol.classList.add('border-blue-900', 'text-blue-900', 'font-bold');
+
+            if (kategori === 'Semua') {
+                renderArtikel(semuaArtikelDatabase);
+            } else {
+                const dataTersaring = semuaArtikelDatabase.filter(item => item.kategori === kategori);
+                renderArtikel(dataTersaring);
+            }
+        }
+
+        // Jalankan program
+        loadArtikel();
+    </script>
+</body>
+</html>

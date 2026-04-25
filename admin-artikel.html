@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Artikel BPP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+    
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        
+        /* Modifikasi Quill Editor agar lebih tinggi untuk nulis artikel */
+        .ql-container { font-family: 'Inter', sans-serif; font-size: 15px; background: #fff; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+        .ql-toolbar { background: #f9fafb; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; border-color: #d1d5db !important; }
+        .ql-container.ql-snow { border-color: #d1d5db !important; }
+        .ql-editor { min-height: 300px; line-height: 1.8; } /* Tingginya 300px karena artikel pasti panjang */
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto mb-6 flex flex-wrap gap-3">
+    <a href="admin.html" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 font-semibold rounded-lg transition">🏠 Dashboard</a>
+    <a href="admin-produk.html" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 font-semibold rounded-lg transition">📦 Kelola Produk</a>
+    <a href="admin-artikel.html" class="px-4 py-2 bg-blue-900 text-white font-semibold rounded-lg shadow-md pointer-events-none">📄 Kelola Artikel</a>
+    <a href="admin-projek.html" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 font-semibold rounded-lg transition">🏗️ Kelola Projek</a>
+    <button onclick="logoutAdmin()" class="ml-auto px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 font-semibold rounded-lg transition">Logout</button>
+</div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-8">
+        
+        <div class="xl:col-span-7 bg-white p-6 rounded-xl shadow-lg h-fit">
+            <h2 id="judul-form" class="text-xl font-bold mb-6 text-blue-900 border-b pb-3">Tulis Artikel Baru</h2>
+            
+            <div id="alert-sukses" class="hidden p-3 mb-4 text-sm text-green-800 rounded-lg bg-green-50 border border-green-200" role="alert">
+                <span class="font-bold">Berhasil!</span> Artikel telah dipublikasikan.
+            </div>
+
+            <form id="form-artikel" class="space-y-5">
+                <input type="hidden" id="input-id">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Judul Artikel</label>
+                        <input type="text" id="input-judul" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" placeholder="Contoh: Perbedaan Pipa Besi dan Galvanis" required>
+                    </div>
+
+                    <div>
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Kategori Artikel</label>
+                        <select id="input-kategori" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" required>
+                            <option value="Konstruksi & Material">Konstruksi & Material</option>
+                            <option value="Tips & Panduan">Tips & Panduan</option>
+                            <option value="Berita Proyek">Berita Proyek</option>
+                            <option value="Event Perusahaan">Event Perusahaan</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block mb-1 text-sm font-semibold text-gray-900">Nama Penulis</label>
+                        <input type="text" id="input-penulis" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" value="Tim Ahli PT BPP" required>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <label class="block mb-1 text-sm font-bold text-blue-900">Link Gambar Cover (Thumbnail)</label>
+                    <input type="url" id="input-gambar" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3" placeholder="https://contoh.com/gambar-pipa.jpg" required>
+                </div>
+                
+                <div>
+                    <label class="block mb-2 text-sm font-semibold text-gray-900">Isi Artikel</label>
+                    <div id="editor-artikel"></div>
+                </div>
+                
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" id="btn-simpan" class="w-full text-white bg-blue-900 hover:bg-blue-800 font-bold rounded-lg text-sm px-5 py-3.5 transition shadow-lg hover:shadow-xl">Publikasikan Artikel</button>
+                    <button type="button" id="btn-batal" class="hidden w-1/3 text-gray-700 bg-gray-200 hover:bg-gray-300 font-bold rounded-lg text-sm px-5 py-3.5 transition">Batal</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="xl:col-span-5 bg-white p-6 rounded-xl shadow-lg h-fit">
+            <h2 class="text-xl font-bold mb-4 text-gray-900 border-b pb-3 flex justify-between items-center">
+                Daftar Artikel
+                <span id="total-artikel" class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">0 Artikel</span>
+            </h2>
+            
+            <div class="overflow-y-auto max-h-[600px] pr-2">
+                <div id="list-artikel" class="space-y-4">
+                    <div class="text-center py-8 text-gray-500">Memuat data artikel...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var quill = new Quill('#editor-artikel', {
+            theme: 'snow',
+            placeholder: 'Mulai menulis artikel Anda di sini...',
+            modules: { 
+                toolbar: [
+                    [{ 'header': [2, 3, false] }], // Bisa buat Heading H2, H3
+                    ['bold', 'italic', 'underline'], 
+                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                    [{ 'color': [] }], // Opsi warna teks
+                    ['blockquote', 'link'],
+                    ['clean']
+                ] 
+            }
+        });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        // ==========================================
+        // PENTING: GANTI CONFIG FIREBASE ANDA DI SINI
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
+            authDomain: "bpp-produk.firebaseapp.com",
+            projectId: "bpp-produk",
+            storageBucket: "bpp-produk.firebasestorage.app",
+            messagingSenderId: "38435149459",
+            appId: "1:38435149459:web:d487394a5886221a9adf66"
+         };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        const auth = getAuth(app);
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // Jika tidak ada user login, tendang ke halaman login
+                window.location.replace("login.html");
+            }
+        });
+
+        // (Opsional) Fungsi Logout, bisa Anda pasang di tombol Navbar admin nanti
+        window.logoutAdmin = () => {
+            signOut(auth).then(() => window.location.replace("login.html"));
+        };
+        const form = document.getElementById('form-artikel');
+        const inputId = document.getElementById('input-id');
+        const btnSimpan = document.getElementById('btn-simpan');
+        const btnBatal = document.getElementById('btn-batal');
+        const judulForm = document.getElementById('judul-form');
+        const listArtikel = document.getElementById('list-artikel');
+        
+        let artikelDatabase = []; 
+
+        // Fungsi Format Tanggal (Contoh: 18 Februari 2026)
+        function formatTanggal(dateStr) {
+            const date = new Date(dateStr);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+
+        // ================= FUNGSI 1: TAMPILKAN LIST ARTIKEL =================
+        async function loadDataArtikel() {
+            try {
+                // Tarik data dari collection 'artikel'
+                const q = query(collection(db, "artikel"), orderBy("tanggalDitambahkan", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                listArtikel.innerHTML = '';
+                artikelDatabase = []; 
+                let count = 0;
+
+                querySnapshot.forEach((docSnap) => {
+                    const item = docSnap.data();
+                    const id = docSnap.id;
+                    artikelDatabase.push({ id, ...item }); 
+                    count++;
+
+                    // Format tanggal dari Firebase Timestamp
+                    const tgl = item.tanggalDitambahkan ? formatTanggal(item.tanggalDitambahkan.toDate()) : 'Tanggal Tidak Diketahui';
+
+                    listArtikel.innerHTML += `
+                        <div class="flex items-start gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+                            <img src="${item.gambar_cover}" class="w-20 h-20 rounded-lg object-cover bg-gray-200" alt="Cover">
+                            <div class="flex-1 min-w-0">
+                                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${item.kategori}</span>
+                                <h3 class="text-sm font-bold text-gray-900 line-clamp-2 mt-1 mb-1">${item.judul}</h3>
+                                <p class="text-xs text-gray-500">${tgl}</p>
+                                <div class="mt-2 flex gap-3">
+                                    <button onclick="klikEdit('${id}')" class="text-xs font-semibold text-blue-600 hover:underline">Edit</button>
+                                    <button onclick="klikHapus('${id}', '${item.judul.replace(/'/g, "\\'")}')" class="text-xs font-semibold text-red-600 hover:underline">Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('total-artikel').innerText = `${count} Artikel`;
+
+                if(count === 0){
+                    listArtikel.innerHTML = '<div class="text-center py-8 text-gray-500 font-medium">Belum ada artikel yang dipublikasikan.</div>';
+                }
+
+            } catch (error) {
+                console.error(error);
+                listArtikel.innerHTML = '<div class="text-center py-8 text-red-500 font-bold">Gagal memuat data dari database.</div>';
+            }
+        }
+
+        // ================= FUNGSI 2: TAMBAH / UPDATE (SUBMIT) =================
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const isiHtml = quill.root.innerHTML;
+            if (quill.getText().trim() === '') return alert("Isi artikel tidak boleh kosong!");
+
+            btnSimpan.innerHTML = "Memproses...";
+            btnSimpan.disabled = true;
+
+            const dataSimpan = {
+                judul: document.getElementById('input-judul').value,
+                kategori: document.getElementById('input-kategori').value,
+                penulis: document.getElementById('input-penulis').value,
+                gambar_cover: document.getElementById('input-gambar').value,
+                isi: isiHtml
+            };
+
+            const editId = inputId.value;
+
+            try {
+                if (editId === "") {
+                    // MODE TAMBAH BARU
+                    dataSimpan.tanggalDitambahkan = new Date();
+                    await addDoc(collection(db, "artikel"), dataSimpan);
+                } else {
+                    // MODE UPDATE/EDIT
+                    await updateDoc(doc(db, "artikel", editId), dataSimpan);
+                }
+
+                resetForm();
+                loadDataArtikel(); 
+                
+                const alertEl = document.getElementById('alert-sukses');
+                alertEl.classList.remove('hidden');
+                setTimeout(() => alertEl.classList.add('hidden'), 4000);
+
+            } catch (error) {
+                console.error(error);
+                alert("Gagal mempublikasikan artikel!");
+            } finally {
+                btnSimpan.innerHTML = "Publikasikan Artikel";
+                btnSimpan.disabled = false;
+            }
+        });
+
+        // ================= FUNGSI 3: HAPUS =================
+        window.klikHapus = async (id, judul) => {
+            const yakin = confirm(`Hapus permanen artikel ini?\n\n"${judul}"`);
+            if(yakin) {
+                try {
+                    await deleteDoc(doc(db, "artikel", id));
+                    loadDataArtikel(); 
+                } catch (error) {
+                    alert("Gagal menghapus artikel.");
+                    console.error(error);
+                }
+            }
+        };
+
+        // ================= FUNGSI 4: EDIT =================
+        window.klikEdit = (id) => {
+            const item = artikelDatabase.find(p => p.id === id);
+            if(!item) return;
+
+            inputId.value = item.id;
+            document.getElementById('input-judul').value = item.judul;
+            document.getElementById('input-kategori').value = item.kategori;
+            document.getElementById('input-penulis').value = item.penulis || "Tim Ahli PT BPP";
+            document.getElementById('input-gambar').value = item.gambar_cover;
+            
+            // Masukkan teks HTML lama ke dalam Quill Editor
+            quill.root.innerHTML = item.isi;
+
+            judulForm.innerText = "Edit Artikel";
+            judulForm.classList.replace('text-blue-900', 'text-yellow-600');
+            btnSimpan.innerText = "Simpan Perubahan";
+            btnSimpan.classList.replace('bg-blue-900', 'bg-yellow-500');
+            btnSimpan.classList.replace('hover:bg-blue-800', 'hover:bg-yellow-600');
+            btnBatal.classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // ================= FUNGSI 5: BATAL EDIT =================
+        function resetForm() {
+            form.reset();
+            inputId.value = "";
+            quill.root.innerHTML = "";
+            
+            judulForm.innerText = "Tulis Artikel Baru";
+            judulForm.classList.replace('text-yellow-600', 'text-blue-900');
+            btnSimpan.innerText = "Publikasikan Artikel";
+            btnSimpan.classList.replace('bg-yellow-500', 'bg-blue-900');
+            btnSimpan.classList.replace('hover:bg-yellow-600', 'hover:bg-blue-800');
+            btnBatal.classList.add('hidden');
+        }
+
+        btnBatal.addEventListener('click', resetForm);
+
+        // Load data saat halaman dibuka
+        loadDataArtikel();
+    </script>
+</body>
+</html>
