@@ -16,8 +16,65 @@
     <link href="./dist/output.css" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body, h1, h2, h3, .font-poppins { font-family: 'Inter', sans-serif; }
         .swiper-pagination-bullet-active { background-color: #1e3a8a !important; }
+
+        /* ================= ANIMASI CLIENT MARQUEE ================= */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+        }
+        /* Gradasi putih di kiri dan kanan agar terlihat estetik */
+        .marquee-container::before, .marquee-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px; /* Lebar efek pudar */
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, white, transparent);
+        }
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, white, transparent);
+        }
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        /* Berhenti bergerak kalau kursor diarahkan ke logo */
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Desain Logo Klien */
+        .client-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px; /* Ukuran wadah logo */
+            margin: 0 30px; /* Jarak antar logo */
+            vertical-align: middle;
+        }
+        .client-logo img {
+            max-height: 60px;
+            max-width: 100%;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(60%);
+            transition: all 0.3s ease;
+        }
+        .client-logo img:hover {
+            filter: grayscale(0%) opacity(100%);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -301,6 +358,61 @@
                 </div>
                 <div class="swiper-pagination mt-8"></div>
             </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white border-y border-gray-100">
+        <div class="max-w-screen-xl mx-auto px-4">
+            
+            <div class="text-center mb-8">
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Klien Kami</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2 font-poppins">Telah Dipercaya Oleh</h2>
+            </div>
+
+            <div class="marquee-container py-4">
+                
+                <div class="marquee-track">
+                    
+                    <div class="client-logo"><img src="./assets/KEMENHUB.png" alt="Klien 1"></div>
+                    <div class="client-logo"><img src="./assets/PLN INDONESIA POWER.png" alt="Klien 2"></div>
+                    <div class="client-logo"><img src="./assets/PEMDA PAPUA BARAT.png" alt="Klien 3"></div>
+                    <div class="client-logo"><img src="./assets/PDAM.png" alt="Klien 4"></div>
+                    <div class="client-logo"><img src="./assets/HOTEL LEMBAH NYIUR.png" alt="Klien 5"></div>
+                    <div class="client-logo"><img src="./assets/PERTAMINA.png" alt="Klien 6"></div>
+                    <div class="client-logo"><img src="./assets/RSI ASSYIFA.png" alt="Klien 7"></div>
+                    <div class="client-logo"><img src="./assets/BESTINDO KONSTRUKSI MAKMUR.png" alt="Klien 8"></div>
+                    <div class="client-logo"><img src="./assets/PT. BAL.png" alt="Klien 9"></div>
+                    <div class="client-logo"><img src="./assets/PJSE.png" alt="Klien 10"></div>
+                    <div class="client-logo"><img src="./assets/WELBON GROUP.png" alt="Klien 11"></div>
+                    <div class="client-logo"><img src="./assets/BRIMOB.png" alt="Klien 12"></div>
+                    <div class="client-logo"><img src="./assets/SEKOLAH BAHASA POLRI.png" alt="Klien 13"></div>
+                    <div class="client-logo"><img src="./assets/BADAN GIZI NASIONAL.png" alt="Klien 14"></div>
+                    <div class="client-logo"><img src="./assets/UIII.png" alt="Klien 15"></div>
+                    <div class="client-logo"><img src="./assets/STAR ENERGY GEOTHERMAL.png" alt="Klien 16"></div>
+                    <div class="client-logo"><img src="./assets/RSUD PALABUHANRATU.png" alt="Klien 17"></div>
+                    
+
+                    <div class="client-logo"><img src="./assets/KEMENHUB.png" alt="Klien 1"></div>
+                    <div class="client-logo"><img src="./assets/PLN INDONESIA POWER.png" alt="Klien 2"></div>
+                    <div class="client-logo"><img src="./assets/PEMDA PAPUA BARAT.png" alt="Klien 3"></div>
+                    <div class="client-logo"><img src="./assets/PDAM.png" alt="Klien 4"></div>
+                    <div class="client-logo"><img src="./assets/HOTEL LEMBAH NYIUR.png" alt="Klien 5"></div>
+                    <div class="client-logo"><img src="./assets/PERTAMINA.png" alt="Klien 6"></div>
+                    <div class="client-logo"><img src="./assets/RSI ASSYIFA.png" alt="Klien 7"></div>
+                    <div class="client-logo"><img src="./assets/BESTINDO KONSTRUKSI MAKMUR.png" alt="Klien 8"></div>
+                    <div class="client-logo"><img src="./assets/PT. BAL.png" alt="Klien 9"></div>
+                    <div class="client-logo"><img src="./assets/PJSE.png" alt="Klien 10"></div>
+                    <div class="client-logo"><img src="./assets/WELBON GROUP.png" alt="Klien 11"></div>
+                    <div class="client-logo"><img src="./assets/BRIMOB.png" alt="Klien 12"></div>
+                    <div class="client-logo"><img src="./assets/SEKOLAH BAHASA POLRI.png" alt="Klien 13"></div>
+                    <div class="client-logo"><img src="./assets/BADAN GIZI NASIONAL.png" alt="Klien 14"></div>
+                    <div class="client-logo"><img src="./assets/UIII.png" alt="Klien 15"></div>
+                    <div class="client-logo"><img src="./assets/STAR ENERGY GEOTHERMAL.png" alt="Klien 16"></div>
+                    <div class="client-logo"><img src="./assets/RSUD PALABUHANRATU.png" alt="Klien 17"></div>
+                    
+                </div>
+            </div>
+
         </div>
     </section>
 
