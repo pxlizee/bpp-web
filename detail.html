@@ -9,7 +9,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
     
     <style>
@@ -41,9 +41,9 @@
         <div class="max-w-5xl mx-auto flex justify-between items-center px-2">
             <a href="index.html" class="flex items-center gap-2 md:gap-3">
                 <img src="./assets/logo-1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo PT BPP">
-                <span class="font-bold text-blue-900 text-base md:text-lg font-poppins">PT Bojongkokosan Putra Perkasa</span>
+                <span class="font-bold text-bpp-blue-900 text-base md:text-lg font-poppins">PT Bojongkokosan Putra Perkasa</span>
             </a>
-            <a href="produk.html" class="text-gray-500 hover:text-blue-900 font-semibold text-xs md:text-sm transition flex items-center bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">
+            <a href="produk.html" class="text-gray-500 hover:text-bpp-blue-900 font-semibold text-xs md:text-sm transition flex items-center bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">
                 ← Kembali ke Katalog
             </a>
         </div>
@@ -109,23 +109,8 @@
     </footer>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        // ==========================================
-        // PENTING: GANTI CONFIG INI DENGAN MILIK ANDA
-        // ==========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
-            authDomain: "bpp-produk.firebaseapp.com",
-            projectId: "bpp-produk",
-            storageBucket: "bpp-produk.firebasestorage.app",
-            messagingSenderId: "38435149459",
-            appId: "1:38435149459:web:d487394a5886221a9adf66"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { db } from "./src/firebase-config.js";
         const urlParams = new URLSearchParams(window.location.search);
         const idProduk = urlParams.get('id');
 

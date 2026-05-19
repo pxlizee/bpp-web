@@ -17,7 +17,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Tailwind + custom overrides -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -26,7 +26,7 @@
             background-color: #f9fafb;
         }
         /* Navbar blur effect */
-        .navbar-blur {
+        .glass {
             backdrop-filter: blur(12px);
             background-color: rgba(255, 255, 255, 0.85);
             transition: all 0.3s ease;
@@ -160,15 +160,15 @@
 <body class="overflow-x-hidden">
 
     <!-- Navbar dengan efek blur saat scroll -->
-    <nav id="navbar" class="fixed w-full z-50 top-0 start-0 bg-white/80 border-b border-gray-200/30 transition-all duration-300 navbar-blur">
+    <nav id="navbar" class="fixed w-full z-50 top-0 start-0  border-b  transition-all duration-300 glass">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center gap-2 md:gap-3">
                 <img src="./assets/logo-1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo PT BPP">
-                <span class="text-sm md:text-base font-bold text-blue-900 leading-tight hidden sm:inline-block">PT Bojongkokosan Putra Perkasa</span>
+                <span class="text-sm md:text-base font-bold text-bpp-blue-900 leading-tight hidden sm:inline-block">PT Bojongkokosan Putra Perkasa</span>
             </a>
 
             <div class="flex md:order-2 gap-2 md:gap-3">
-                <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 transition-all shadow-md shadow-blue-700/30">
+                <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-bpp-blue-700 rounded-full hover:bg-bpp-blue-800 focus:ring-4 focus:ring-blue-300 transition-all shadow-md shadow-bpp-blue-700/30">
                     Hubungi Kami
                 </button>
                 <button id="burger-menu" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
@@ -181,12 +181,12 @@
 
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:gap-8 md:mt-0 md:border-0 md:bg-transparent">
-                    <li><a href="#home" class="block py-2 px-3 text-blue-700 md:p-0 font-bold">Beranda</a></li>
-                    <li><a href="#about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Tentang Kami</a></li>
-                    <li><a href="#services" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Layanan</a></li>
-                    <li><a href="projek.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Proyek</a></li>
-                    <li><a href="artikel.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Artikel</a></li>
-                    <li><a href="produk.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-colors">Produk</a></li>
+                    <li><a href="#home" class="block py-2 px-3 text-bpp-blue-700 md:p-0 font-bold">Beranda</a></li>
+                    <li><a href="#about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-bpp-blue-700 md:p-0 transition-colors">Tentang Kami</a></li>
+                    <li><a href="#services" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-bpp-blue-700 md:p-0 transition-colors">Layanan</a></li>
+                    <li><a href="projek.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-bpp-blue-700 md:p-0 transition-colors">Proyek</a></li>
+                    <li><a href="artikel.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-bpp-blue-700 md:p-0 transition-colors">Artikel</a></li>
+                    <li><a href="produk.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-bpp-blue-700 md:p-0 transition-colors">Produk</a></li>
                 </ul>
             </div>
         </div>
@@ -196,19 +196,19 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center hero-parallax" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-transparent"></div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase drop-shadow-lg">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-bpp-gold-200 uppercase drop-shadow-lg">
                 Building Material Specialist
             </h1>
-            <p class="text-2xl md:text-3xl font-bold text-yellow-400 mt-4 drop-shadow-md">"All You Need Here"</p>
+            <p class="text-2xl md:text-3xl font-bold text-bpp-gold-500 mt-4 drop-shadow-md">"All You Need Here"</p>
             <p class="text-base md:text-lg text-gray-200 mt-6 max-w-2xl mx-auto">
                 Mitra terpercaya penyediaan material konstruksi, jasa konstruksi, dan solusi infrastruktur berkualitas di Indonesia.
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="produk.html" class="inline-flex items-center px-6 py-3 text-base font-semibold text-white bg-blue-700 rounded-full hover:bg-blue-800 transition-all shadow-lg shadow-blue-700/50 hover:scale-105 duration-200">
+                <a href="produk.html" class="inline-flex items-center px-6 py-3 text-base font-semibold text-white bg-bpp-blue-700 rounded-full hover:bg-bpp-blue-800 transition-all shadow-glow-blue hover:scale-105 duration-200">
                     Lihat Produk
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
-                <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="inline-flex items-center px-6 py-3 text-base font-semibold text-blue-800 bg-white rounded-full hover:bg-gray-100 transition-all shadow-md hover:scale-105 duration-200">
+                <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="inline-flex items-center px-6 py-3 text-base font-semibold text-bpp-blue-800 bg-white rounded-full hover:bg-gray-100 transition-all shadow-md hover:scale-105 duration-200">
                     Konsultasi Gratis
                 </button>
             </div>
@@ -222,33 +222,33 @@
     <section class="bg-white py-20">
         <div class="max-w-screen-xl mx-auto px-4">
             <div class="text-center mb-14" data-aos="fade-up">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Keunggulan</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Mengapa <span class="text-blue-800">Memilih Kami?</span></h2>
-                <div class="w-24 h-1 bg-yellow-400 mx-auto mt-4 rounded-full"></div>
+                <span class="text-bpp-blue-600 font-semibold text-sm uppercase tracking-wider">Keunggulan</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Mengapa <span class="text-bpp-blue-800">Memilih Kami?</span></h2>
+                <div class="w-24 h-1 bg-bpp-gold-500 mx-auto mt-4 rounded-full"></div>
             </div>
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold shadow-sm">💰</div>
+                <div class="glass p-6 rounded-2xl hover:shadow-glow-blue transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-bpp-blue-100 text-bpp-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold shadow-sm">💰</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Harga Kompetitif</h3>
                     <p class="text-gray-600">Menawarkan harga transparan dan kompetitif tanpa mengorbankan kualitas.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">✅</div>
+                <div class="glass p-6 rounded-2xl hover:shadow-glow-blue transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-bpp-blue-100 text-bpp-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">✅</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Kualitas Terjamin</h3>
                     <p class="text-gray-600">Produk melalui seleksi ketat dan pengendalian mutu bersertifikat.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">🚚</div>
+                <div class="glass p-6 rounded-2xl hover:shadow-glow-blue transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-bpp-blue-100 text-bpp-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">🚚</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Pengiriman Cepat</h3>
                     <p class="text-gray-600">Sistem logistik andal memastikan pengiriman tepat waktu ke seluruh Indonesia.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">🗺️</div>
+                <div class="glass p-6 rounded-2xl hover:shadow-glow-blue transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-bpp-blue-100 text-bpp-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">🗺️</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Jangkauan Nasional</h3>
                     <p class="text-gray-600">Melayani pengiriman antarpulau ke berbagai wilayah di Indonesia.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="500">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">🤝</div>
+                <div class="glass p-6 rounded-2xl hover:shadow-glow-blue transition-all duration-300 hover:-translate-y-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 bg-bpp-blue-100 text-bpp-blue-700 rounded-2xl flex items-center justify-center mb-5 text-2xl font-bold">🤝</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Mitra Terpercaya</h3>
                     <p class="text-gray-600">Tim profesional berkomitmen memberikan solusi konstruksi terbaik.</p>
                 </div>
@@ -260,19 +260,19 @@
     <section id="about" class="py-20 bg-gradient-to-br from-white via-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-14" data-aos="fade-up">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">▸ Tentang Perusahaan</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Mengenal <span class="text-blue-900">PT Bojongkokosan</span></h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+                <span class="text-bpp-blue-600 font-semibold text-sm uppercase tracking-wider">▸ Tentang Perusahaan</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Mengenal <span class="text-bpp-blue-900">PT Bojongkokosan</span></h2>
+                <div class="w-24 h-1 bg-bpp-blue-600 mx-auto mt-4 rounded-full"></div>
             </div>
             <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="space-y-6" data-aos="fade-right">
                     <p class="text-gray-700 text-lg leading-relaxed">
-                        <span class="font-bold text-blue-900">PT Bojongkokosan Putra Perkasa</span> adalah perusahaan yang bergerak di bidang penyediaan dan distribusi bahan bangunan, jasa konstruksi, konsultan perencana, serta produsen <span class="font-semibold">Instalasi Pengolahan Air Limbah (IPAL)</span>.
+                        <span class="font-bold text-bpp-blue-900">PT Bojongkokosan Putra Perkasa</span> adalah perusahaan yang bergerak di bidang penyediaan dan distribusi bahan bangunan, jasa konstruksi, konsultan perencana, serta produsen <span class="font-semibold">Instalasi Pengolahan Air Limbah (IPAL)</span>.
                     </p>
                     <p class="text-gray-600 leading-relaxed">
-                        Perusahaan didukung oleh tenaga profesional dan berkomitmen terhadap kualitas untuk menjadi mitra terpercaya dalam proyek konstruksi dan infrastruktur. Layanan dan produk yang disediakan meliputi <span class="font-medium text-blue-800">Material Konstruksi, Perpipaan, serta Finishing & MEP</span>.
+                        Perusahaan didukung oleh tenaga profesional dan berkomitmen terhadap kualitas untuk menjadi mitra terpercaya dalam proyek konstruksi dan infrastruktur. Layanan dan produk yang disediakan meliputi <span class="font-medium text-bpp-blue-800">Material Konstruksi, Perpipaan, serta Finishing & MEP</span>.
                     </p>
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-8 border-blue-900 hover:shadow-xl transition">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-8 border-bpp-blue-900 hover:shadow-xl transition">
                         <div class="flex gap-4">
                             <div class="text-4xl">🎯</div>
                             <div>
@@ -281,7 +281,7 @@
                             </div>
                         </div>
                     </div>
-                    <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-blue-700 rounded-full hover:bg-blue-800 transition-all shadow-lg shadow-blue-700/30">
+                    <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-bpp-blue-700 rounded-full hover:bg-bpp-blue-800 transition-all shadow-lg shadow-bpp-blue-700/30">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         Hubungi Kami
                     </button>
@@ -303,8 +303,8 @@
         <div class="max-w-screen-xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12">
                 <div data-aos="fade-right">
-                    <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center">
-                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-3 px-3 py-1 rounded-full">MISI</span>
+                    <h3 class="text-2xl font-bold text-bpp-blue-900 mb-6 flex items-center">
+                        <span class="bg-bpp-blue-100 text-bpp-blue-800 text-sm font-semibold mr-3 px-3 py-1 rounded-full">MISI</span>
                         Misi Kami
                     </h3>
                     <ul class="space-y-4">
@@ -316,8 +316,8 @@
                     </ul>
                 </div>
                 <div data-aos="fade-left">
-                    <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center">
-                        <span class="bg-yellow-100 text-yellow-800 text-sm font-semibold mr-3 px-3 py-1 rounded-full">VALUES</span>
+                    <h3 class="text-2xl font-bold text-bpp-blue-900 mb-6 flex items-center">
+                        <span class="bg-bpp-gold-100 text-bpp-gold-800 text-sm font-semibold mr-3 px-3 py-1 rounded-full">VALUES</span>
                         Nilai Perusahaan
                     </h3>
                     <div class="grid gap-4">
@@ -335,17 +335,17 @@
     <section id="services" class="bg-gray-50 py-20">
         <div class="max-w-screen-xl mx-auto px-4">
             <div class="text-center mb-14" data-aos="fade-up">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Solusi Lengkap</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Produk & <span class="text-blue-800">Layanan</span></h2>
+                <span class="text-bpp-blue-600 font-semibold text-sm uppercase tracking-wider">Solusi Lengkap</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">Produk & <span class="text-bpp-blue-800">Layanan</span></h2>
                 <p class="text-gray-500 mt-2">Kami siap memenuhi kebutuhan konstruksi Anda.</p>
             </div>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600 service-card" data-aos="fade-up"><div class="text-3xl mb-3">🏗️</div><h3 class="text-xl font-bold text-gray-900 mb-2">Material Bangunan</h3><p class="text-sm text-gray-600">Baja IWF, UNP, CNP, Besi Beton, Baja Ringan, Gypsum.</p></div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600 service-card" data-aos="fade-up" data-aos-delay="100"><div class="text-3xl mb-3">🔧</div><h3 class="text-xl font-bold text-gray-900 mb-2">Sistem Perpipaan</h3><p class="text-sm text-gray-600">Pipa PVC, PPR, HDPE, Spiral, Hitam, Galvanis.</p></div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600 service-card" data-aos="fade-up" data-aos-delay="200"><div class="text-3xl mb-3">💧</div><h3 class="text-xl font-bold text-gray-900 mb-2">Produsen IPAL</h3><p class="text-sm text-gray-600">Solusi instalasi IPAL ramah lingkungan.</p></div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600 service-card" data-aos="fade-up" data-aos-delay="300"><div class="text-3xl mb-3">🏢</div><h3 class="text-xl font-bold text-gray-900 mb-2">Jasa Konstruksi</h3><p class="text-sm text-gray-600">Pelaksanaan konstruksi profesional.</p></div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600 service-card" data-aos="fade-up" data-aos-delay="400"><div class="text-3xl mb-3">📐</div><h3 class="text-xl font-bold text-gray-900 mb-2">Konsultan Perencana</h3><p class="text-sm text-gray-600">Perencanaan teknis dari konsep hingga detail.</p></div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600 service-card" data-aos="fade-up" data-aos-delay="500"><div class="text-3xl mb-3">🎨</div><h3 class="text-xl font-bold text-gray-900 mb-2">Finishing & Interior</h3><p class="text-sm text-gray-600">Granit, Keramik, Sanitary, MEP.</p></div>
+                <div class="glass p-6 rounded-xl hover:shadow-glow-blue hover:-translate-y-2 transition-all duration-300 border-t-4 border-bpp-blue-600 service-card" data-aos="fade-up"><div class="text-3xl mb-3">🏗️</div><h3 class="text-xl font-bold text-gray-900 mb-2">Material Bangunan</h3><p class="text-sm text-gray-600">Baja IWF, UNP, CNP, Besi Beton, Baja Ringan, Gypsum.</p></div>
+                <div class="glass p-6 rounded-xl hover:shadow-glow-blue hover:-translate-y-2 transition-all duration-300 border-t-4 border-bpp-blue-600 service-card" data-aos="fade-up" data-aos-delay="100"><div class="text-3xl mb-3">🔧</div><h3 class="text-xl font-bold text-gray-900 mb-2">Sistem Perpipaan</h3><p class="text-sm text-gray-600">Pipa PVC, PPR, HDPE, Spiral, Hitam, Galvanis.</p></div>
+                <div class="glass p-6 rounded-xl hover:shadow-glow-blue hover:-translate-y-2 transition-all duration-300 border-t-4 border-bpp-blue-600 service-card" data-aos="fade-up" data-aos-delay="200"><div class="text-3xl mb-3">💧</div><h3 class="text-xl font-bold text-gray-900 mb-2">Produsen IPAL</h3><p class="text-sm text-gray-600">Solusi instalasi IPAL ramah lingkungan.</p></div>
+                <div class="glass p-6 rounded-xl hover:shadow-glow-blue hover:-translate-y-2 transition-all duration-300 border-t-4 border-bpp-blue-600 service-card" data-aos="fade-up" data-aos-delay="300"><div class="text-3xl mb-3">🏢</div><h3 class="text-xl font-bold text-gray-900 mb-2">Jasa Konstruksi</h3><p class="text-sm text-gray-600">Pelaksanaan konstruksi profesional.</p></div>
+                <div class="glass p-6 rounded-xl hover:shadow-glow-blue hover:-translate-y-2 transition-all duration-300 border-t-4 border-bpp-blue-600 service-card" data-aos="fade-up" data-aos-delay="400"><div class="text-3xl mb-3">📐</div><h3 class="text-xl font-bold text-gray-900 mb-2">Konsultan Perencana</h3><p class="text-sm text-gray-600">Perencanaan teknis dari konsep hingga detail.</p></div>
+                <div class="glass p-6 rounded-xl hover:shadow-glow-blue hover:-translate-y-2 transition-all duration-300 border-t-4 border-bpp-blue-600 service-card" data-aos="fade-up" data-aos-delay="500"><div class="text-3xl mb-3">🎨</div><h3 class="text-xl font-bold text-gray-900 mb-2">Finishing & Interior</h3><p class="text-sm text-gray-600">Granit, Keramik, Sanitary, MEP.</p></div>
             </div>
         </div>
     </section>
@@ -355,7 +355,7 @@
         <div class="max-w-screen-xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12" data-aos="fade-up">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900">Proyek Terbaru</h2>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-bpp-blue-900">Proyek Terbaru</h2>
                     <p class="text-gray-500 mt-2">Pengalaman kami di lapangan</p>
                 </div>
                 <div class="flex gap-3 mt-4 md:mt-0">
@@ -365,10 +365,10 @@
             </div>
             <div class="swiper mySwiper w-full h-auto pb-12" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/PEMDA 2.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Gedung Pemerintah Daerah"><span class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Konstruksi</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Gedung Pemerintah Daerah</h3><p class="text-sm text-gray-500">Proyek konstruksi gedung pemerintah daerah.</p></div></div></div>
+                    <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/PEMDA 2.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Gedung Pemerintah Daerah"><span class="absolute top-2 right-2 bg-bpp-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Konstruksi</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Gedung Pemerintah Daerah</h3><p class="text-sm text-gray-500">Proyek konstruksi gedung pemerintah daerah.</p></div></div></div>
                     <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/HDPE 1.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Instalasi Pipa HDPE"><span class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">Proyek</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Instalasi Pipa HDPE</h3><p class="text-sm text-gray-500">Pengadaan dan instalasi pipa HDPE untuk sistem irigasi.</p></div></div></div>
-                    <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/CHEV 1.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Star Energy Geothermal"><span class="absolute top-2 right-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">Proyek</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Proyek Star Energy Geothermal</h3><p class="text-sm text-gray-500">Pengembangan proyek energi geothermal di wilayah Jawa Barat.</p></div></div></div>
-                    <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/1.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Bio Septic Tank"><span class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Instalasi</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Instalasi Bio Septic Tank</h3><p class="text-sm text-gray-500">Pengadaan dan instalasi sistem bio septic tank untuk pengolahan air limbah.</p></div></div></div>
+                    <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/CHEV 1.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Star Energy Geothermal"><span class="absolute top-2 right-2 bg-bpp-gold-600 text-white text-xs font-bold px-2 py-1 rounded">Proyek</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Proyek Star Energy Geothermal</h3><p class="text-sm text-gray-500">Pengembangan proyek energi geothermal di wilayah Jawa Barat.</p></div></div></div>
+                    <div class="swiper-slide h-auto"><div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm h-full hover:shadow-xl transition"><div class="aspect-[4/5] overflow-hidden relative"><img src="assets/1.png" class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Bio Septic Tank"><span class="absolute top-2 right-2 bg-bpp-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Instalasi</span></div><div class="p-5"><h3 class="font-bold text-lg text-gray-900 mb-2">Instalasi Bio Septic Tank</h3><p class="text-sm text-gray-500">Pengadaan dan instalasi sistem bio septic tank untuk pengolahan air limbah.</p></div></div></div>
                 </div>
                 <div class="swiper-pagination mt-6"></div>
             </div>
@@ -379,7 +379,7 @@
     <section class="py-16 bg-white border-y border-gray-100">
         <div class="max-w-screen-xl mx-auto px-4">
             <div class="text-center mb-10">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Kepercayaan</span>
+                <span class="text-bpp-blue-600 font-bold text-xs uppercase tracking-widest">Kepercayaan</span>
                 <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Telah Dipercaya Oleh</h2>
             </div>
             <div class="marquee-container">
@@ -446,10 +446,10 @@
 
     <!-- Modal Kontak (sama seperti asli) -->
     <div id="contact-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50 backdrop-blur-sm">
-        <div class="relative p-4 w-full max-w-md max-h-full"><div class="relative bg-white rounded-xl shadow-2xl"><div class="flex items-center justify-between p-4 border-b"><h3 class="text-xl font-bold text-gray-900">Hubungi Kami</h3><button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 rounded-lg w-8 h-8" data-modal-hide="contact-modal"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div><div class="p-5"><p class="text-sm text-gray-500 mb-4">Silakan pilih metode komunikasi:</p><ul class="space-y-3"><li><a href="https://wa.me/6281298352065" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-green-100"><svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><div><span>WhatsApp Admin 1</span><br><span class="text-xs">0812-9835-2065</span></div></a></li><li><a href="https://wa.me/628551224688" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-green-100"><svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><div><span>WhatsApp Admin 2</span><br><span class="text-xs">0855-1224-688</span></div></a></li><li><a href="mailto:bppsukabumi.supplier@gmail.com" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-blue-100"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>Kirim Email</span></a></li><li><a href="https://instagram.com/bpp.sukabumi" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-pink-100"><svg class="w-6 h-6 text-pink-600 mr-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468.99c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z"/></svg><span>Instagram</span></a></li><li><a href="https://tiktok.com/@bppsukabumi.supplier" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6 text-gray-900 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.84-2.92 6.48-1.48 1.34-3.48 2.15-5.55 2.15-2.64 0-5.06-1.16-6.66-3.03C.3 18.59-.26 16.7.07 14.65c.34-2.12 1.5-4 3.22-5.18 1.63-1.12 3.63-1.61 5.61-1.39.52.06 1.04.18 1.53.37v4.13a5.57 5.57 0 00-1.29-.16c-1.39 0-2.65.65-3.45 1.75-.81 1.12-.96 2.59-.44 3.86.53 1.28 1.72 2.19 3.09 2.28 1.76.13 3.4-.9 4.14-2.52.26-.59.38-1.23.37-1.88V.02z"/></svg><span>TikTok</span></a></li></ul></div></div></div></div>
+        <div class="relative p-4 w-full max-w-md max-h-full"><div class="relative bg-white rounded-xl shadow-2xl"><div class="flex items-center justify-between p-4 border-b"><h3 class="text-xl font-bold text-gray-900">Hubungi Kami</h3><button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 rounded-lg w-8 h-8" data-modal-hide="contact-modal"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div><div class="p-5"><p class="text-sm text-gray-500 mb-4">Silakan pilih metode komunikasi:</p><ul class="space-y-3"><li><a href="https://wa.me/6281298352065" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-green-100"><svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><div><span>WhatsApp Admin 1</span><br><span class="text-xs">0812-9835-2065</span></div></a></li><li><a href="https://wa.me/628551224688" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-green-100"><svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><div><span>WhatsApp Admin 2</span><br><span class="text-xs">0855-1224-688</span></div></a></li><li><a href="mailto:bppsukabumi.supplier@gmail.com" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-bpp-blue-100"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>Kirim Email</span></a></li><li><a href="https://instagram.com/bpp.sukabumi" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-pink-100"><svg class="w-6 h-6 text-pink-600 mr-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468.99c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z"/></svg><span>Instagram</span></a></li><li><a href="https://tiktok.com/@bppsukabumi.supplier" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-200"><svg class="w-6 h-6 text-gray-900 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.84-2.92 6.48-1.48 1.34-3.48 2.15-5.55 2.15-2.64 0-5.06-1.16-6.66-3.03C.3 18.59-.26 16.7.07 14.65c.34-2.12 1.5-4 3.22-5.18 1.63-1.12 3.63-1.61 5.61-1.39.52.06 1.04.18 1.53.37v4.13a5.57 5.57 0 00-1.29-.16c-1.39 0-2.65.65-3.45 1.75-.81 1.12-.96 2.59-.44 3.86.53 1.28 1.72 2.19 3.09 2.28 1.76.13 3.4-.9 4.14-2.52.26-.59.38-1.23.37-1.88V.02z"/></svg><span>TikTok</span></a></li></ul></div></div></div></div>
 
     <!-- Floating WhatsApp Mobile & Scroll Top -->
-    <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="md:hidden fixed bottom-6 right-6 z-50 bg-green-500 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-transform hover:scale-110"><svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
+    <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="md:hidden fixed bottom-24 right-6 z-50 bg-green-500 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-transform hover:scale-110"><svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
     <div class="scroll-top" id="scrollTopBtn"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></div>
 
     <!-- Scripts -->

@@ -9,7 +9,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     
     <style>
         body, h1, h2, h3, .font-poppins { font-family: 'Inter', sans-serif; }
@@ -32,22 +32,22 @@
         <div class="max-w-[1200px] mx-auto flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-3">
                 <img src="./assets/logo-1.png" class="h-7 md:h-9 w-auto object-contain" alt="Logo BPP">
-                <span class="font-bold text-blue-900 tracking-wide text-sm md:text-base font-poppins">PT Bojongkokosan Putra Perkasa</span>
+                <span class="font-bold text-bpp-blue-900 tracking-wide text-sm md:text-base font-poppins">PT Bojongkokosan Putra Perkasa</span>
             </a>
             
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
-                <a href="index.html" class="hover:text-blue-900 transition">Beranda</a>
-                <a href="produk.html" class="text-blue-900">Katalog</a>
+                <a href="index.html" class="hover:text-bpp-blue-900 transition">Beranda</a>
+                <a href="produk.html" class="text-bpp-blue-900">Katalog</a>
             </div>
 
             <div class="flex items-center gap-4 text-gray-600">
-                <a href="index.html" class="md:hidden text-xs font-bold uppercase hover:text-blue-900">Kembali</a>
+                <a href="index.html" class="md:hidden text-xs font-bold uppercase hover:text-bpp-blue-900">Kembali</a>
             </div>
         </div>
     </nav>
 
     <div id="loading" class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center">
-        <div class="animate-spin h-8 w-8 border-4 border-blue-900 border-t-transparent rounded-full mb-4"></div>
+        <div class="animate-spin h-8 w-8 border-4 border-bpp-blue-900 border-t-transparent rounded-full mb-4"></div>
         <p class="text-xs text-gray-500 font-bold tracking-widest uppercase">Memuat Katalog...</p>
     </div>
 
@@ -55,17 +55,17 @@
         
         <div class="mb-10">
             <div class="flex space-x-6 md:space-x-10 border-b border-gray-200 overflow-x-auto hide-scroll text-sm md:text-base whitespace-nowrap" id="wadah-filter">
-                <button onclick="filterKategori('Semua', this)" class="filter-btn pb-3 border-b-2 border-blue-900 text-blue-900 font-bold transition">Semua Produk</button>
-                <button onclick="filterKategori('Besi & Baja', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Besi & Baja</button>
-                <button onclick="filterKategori('Perpipaan', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Perpipaan</button>
-                <button onclick="filterKategori('Instalasi IPAL', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Instalasi IPAL</button>
-                <button onclick="filterKategori('Material Sipil', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">Material Sipil</button>
-                <button onclick="filterKategori('MEP', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-blue-900 transition">MEP</button>
+                <button onclick="filterKategori('Semua', this)" class="filter-btn pb-3 border-b-2 border-bpp-blue-900 text-bpp-blue-900 font-bold transition">Semua Produk</button>
+                <button onclick="filterKategori('Besi & Baja', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-bpp-blue-900 transition">Besi & Baja</button>
+                <button onclick="filterKategori('Perpipaan', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-bpp-blue-900 transition">Perpipaan</button>
+                <button onclick="filterKategori('Instalasi IPAL', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-bpp-blue-900 transition">Instalasi IPAL</button>
+                <button onclick="filterKategori('Material Sipil', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-bpp-blue-900 transition">Material Sipil</button>
+                <button onclick="filterKategori('MEP', this)" class="filter-btn pb-3 border-b-2 border-transparent text-gray-400 font-semibold hover:text-bpp-blue-900 transition">MEP</button>
             </div>
             
             <div class="flex justify-between items-center mt-6 text-sm font-medium text-gray-500">
                 <span id="txt-total-produk">0 Produk</span>
-                <div class="flex items-center gap-2 cursor-pointer hover:text-blue-900 transition">
+                <div class="flex items-center gap-2 cursor-pointer hover:text-bpp-blue-900 transition">
                     <span>Urutkan: Terbaru</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </div>
@@ -84,23 +84,8 @@
     </footer>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        // ==========================================
-        // PENTING: GANTI CONFIG INI DENGAN MILIK ANDA
-        // ==========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
-            authDomain: "bpp-produk.firebaseapp.com",
-            projectId: "bpp-produk",
-            storageBucket: "bpp-produk.firebasestorage.app",
-            messagingSenderId: "38435149459",
-            appId: "1:38435149459:web:d487394a5886221a9adf66"
-         };
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
+        import { collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { db } from "./src/firebase-config.js";
         let semuaProdukDatabase = [];
 
         async function loadProduk() {
@@ -138,7 +123,7 @@
             dataProduk.forEach(item => {
                 const gambarSampul = (item.gambar && item.gambar.length > 0) ? item.gambar[0] : '';
                 
-                let labelHtml = item.label ? `<span class="absolute top-3 left-3 bg-white/90 backdrop-blur text-blue-900 text-[9px] md:text-[10px] font-extrabold px-2.5 py-1 rounded shadow-sm uppercase tracking-widest z-10">${item.label}</span>` : '';
+                let labelHtml = item.label ? `<span class="absolute top-3 left-3 bg-white/90 backdrop-blur text-bpp-blue-900 text-[9px] md:text-[10px] font-extrabold px-2.5 py-1 rounded shadow-sm uppercase tracking-widest z-10">${item.label}</span>` : '';
 
                 const htmlKartu = `
                     <a href="detail.html?id=${item.id}" class="product-card group block cursor-pointer">
@@ -148,9 +133,9 @@
                         </div>
                         
                         <div class="px-1 flex flex-col">
-                            <span class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mb-1">${item.kategori}</span>
-                            <h3 class="text-sm md:text-base font-bold text-gray-900 leading-snug truncate font-elegant group-hover:text-blue-700 transition">${item.nama}</h3>
-                            <span class="text-xs font-semibold text-gray-400 mt-2 flex items-center group-hover:text-blue-700 transition">
+                            <span class="text-[10px] text-bpp-blue-600 font-bold uppercase tracking-wider mb-1">${item.kategori}</span>
+                            <h3 class="text-sm md:text-base font-bold text-gray-900 leading-snug truncate font-elegant group-hover:text-bpp-blue-700 transition">${item.nama}</h3>
+                            <span class="text-xs font-semibold text-gray-400 mt-2 flex items-center group-hover:text-bpp-blue-700 transition">
                                 Lihat Detail 
                                 <svg class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                             </span>
@@ -164,12 +149,12 @@
         window.filterKategori = function(kategori, elemenTombol) {
             const semuaTombol = document.querySelectorAll('.filter-btn');
             semuaTombol.forEach(btn => {
-                btn.classList.remove('border-blue-900', 'text-blue-900', 'font-bold');
+                btn.classList.remove('border-bpp-blue-900', 'text-bpp-blue-900', 'font-bold');
                 btn.classList.add('border-transparent', 'text-gray-400', 'font-semibold');
             });
             
             elemenTombol.classList.remove('border-transparent', 'text-gray-400', 'font-semibold');
-            elemenTombol.classList.add('border-blue-900', 'text-blue-900', 'font-bold');
+            elemenTombol.classList.add('border-bpp-blue-900', 'text-bpp-blue-900', 'font-bold');
 
             if (kategori === 'Semua') {
                 renderProduk(semuaProdukDatabase);
