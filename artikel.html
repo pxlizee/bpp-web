@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Artikel & Berita | BPP</title>
+    <link rel="icon" href="./assets/logo-1.png" type="image/png">
     
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -223,7 +224,7 @@
             
             modalBody.innerHTML = `
                 <div class="mb-4">
-                    <img src="${artikel.gambar_cover}" class="w-full rounded-xl object-cover max-h-80" alt="${artikel.judul}">
+                    <img src="${artikel.gambar_cover}" class="w-full rounded-xl object-cover" style="aspect-ratio: 13 / 9;" alt="${artikel.judul}">
                 </div>
                 <div class="flex flex-wrap gap-3 text-sm text-gray-500 border-b pb-3 mb-4">
                     <span>📅 ${tanggal}</span>
