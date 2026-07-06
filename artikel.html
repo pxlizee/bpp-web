@@ -134,15 +134,6 @@
     <script type="module">
         import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { db } from "./src/firebase-config.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCrDcMu6L49CvOtWG4Y64RQweuKUrXbu-M",
-            authDomain: "bpp-produk.firebaseapp.com",
-            projectId: "bpp-produk",
-            storageBucket: "bpp-produk.firebasestorage.app",
-            messagingSenderId: "38435149459",
-            appId: "1:38435149459:web:d487394a5886221a9adf66"
-        };
         function formatTanggal(timestamp) {
             if (!timestamp) return 'Tidak diketahui';
             const date = timestamp.toDate();
