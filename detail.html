@@ -37,43 +37,58 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <nav class="bg-white fixed w-full z-50 top-0 border-b border-gray-100 p-4 shadow-sm">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-indicator fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-bpp-blue to-bpp-gold-500 origin-left z-[100] pointer-events-none"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 md:top-4 mx-auto w-full md:w-[90%] md:max-w-5xl md:rounded-2xl transition-all duration-500 glass border-b md:border border-white/20 p-4 shadow-md bg-white/80 backdrop-blur-md">
         <div class="max-w-5xl mx-auto flex justify-between items-center px-2">
-            <a href="index.html" class="flex items-center gap-2 md:gap-3">
-                <img src="./assets/logo-1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo PT BPP">
-                <span class="font-bold text-bpp-blue-900 text-base md:text-lg font-poppins">PT Bojongkokosan Putra Perkasa</span>
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                <img src="./assets/logo-1.png" class="h-8 md:h-10 w-auto object-contain transition-transform duration-500 group-hover:rotate-[360deg]" alt="Logo PT BPP">
+                <span class="font-bold text-bpp-blue-900 text-base md:text-lg font-poppins transition-colors group-hover:text-bpp-gold">PT Bojongkokosan Putra Perkasa</span>
             </a>
-            <a href="produk.html" class="text-gray-500 hover:text-bpp-blue-900 font-semibold text-xs md:text-sm transition flex items-center bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">
+            <a href="produk.html" class="text-gray-500 hover:text-bpp-blue-900 font-semibold text-xs md:text-sm transition-premium flex items-center bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">
                 ← Kembali ke Katalog
             </a>
         </div>
     </nav>
 
-    <div id="loading" class="flex-grow flex flex-col items-center justify-center pt-20">
-        <div class="animate-spin h-10 w-10 border-4 border-gray-900 border-t-transparent rounded-full mb-4"></div>
+    <!-- Custom Loading Animation Screen -->
+    <div id="loading" class="flex-grow flex flex-col items-center justify-center pt-32 transition-opacity duration-500">
+        <img src="./assets/logo-1.png" class="h-16 w-auto animate-pulse mb-6" alt="Logo">
+        <div class="h-1 w-32 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-bpp-blue to-bpp-gold w-1/2 rounded-full" style="animation: loading-bar 1.5s infinite ease-in-out;"></div>
+        </div>
+        <style>
+            @keyframes loading-bar {
+                0% { transform: translateX(-100%); }
+                50% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+            }
+        </style>
+        <p class="text-xs text-gray-400 font-extrabold tracking-widest uppercase mt-4">Memuat Detail Produk...</p>
     </div>
 
-    <main id="konten-produk" class="hidden flex-grow pt-28 pb-20 px-4 sm:px-8 max-w-5xl w-full mx-auto">
+    <main id="konten-produk" class="hidden flex-grow pt-32 pb-20 px-4 sm:px-8 max-w-5xl w-full mx-auto">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
             
-            <div class="w-full flex flex-col gap-4 md:sticky md:top-28">
+            <div class="w-full flex flex-col gap-4 md:sticky md:top-32">
                 
-                <div class="w-full aspect-[3/4] bg-[#f8f9fa] rounded-2xl md:rounded-3xl overflow-hidden flex items-center justify-center relative border border-gray-200 shadow-sm">
-                    <span id="label-kategori" class="hidden absolute top-4 left-4 bg-white/90 backdrop-blur text-gray-900 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm uppercase tracking-widest z-10"></span>
+                <div class="w-full aspect-[3/4] bg-[#f8f9fa] rounded-2xl md:rounded-3xl overflow-hidden flex items-center justify-center relative border border-gray-200 shadow-sm hover-zoom-img">
+                    <span id="label-kategori" class="hidden absolute top-4 left-4 bg-white/95 backdrop-blur text-gray-900 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm uppercase tracking-widest z-10 border border-gray-100"></span>
                     <img id="gambar-utama" src="" alt="Gambar Produk" class="w-full h-full object-cover transition-opacity duration-300">
                 </div>
 
                 <div id="wadah-thumbnail" class="flex gap-3 overflow-x-auto hide-scroll py-2 px-1">
-                    </div>
+                </div>
             </div>
 
-            <div class="flex flex-col pt-2">
+            <div class="flex flex-col pt-2 animate-fade-slide-up" style="animation-delay: 150ms;">
                 
-                <p id="txt-kategori" class="text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">
+                <p id="txt-kategori" class="text-[11px] font-bold text-bpp-blue-600 uppercase tracking-widest mb-2">
                     Memuat...
                 </p>
-                <h1 id="txt-nama" class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-6 font-poppins">
+                <h1 id="txt-nama" class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-6 font-poppins text-gradient bg-gradient-to-r from-bpp-blue to-bpp-blue-900">
                     Memuat...
                 </h1>
                 
@@ -87,13 +102,13 @@
                     
                     <p class="text-xs font-bold text-gray-900 mb-2 uppercase tracking-wider">Pemesanan</p>
                     
-                    <a id="btn-wa" href="#" target="_blank" class="flex items-center justify-center w-full text-white bg-[#111827] hover:bg-[#374151] font-bold rounded-xl text-sm md:text-base px-6 py-4 transition-all shadow-md">
-                        <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <a id="btn-wa" href="#" target="_blank" class="group flex items-center justify-center w-full text-white bg-bpp-blue-800 hover:bg-bpp-blue-700 font-bold rounded-xl text-sm md:text-base px-6 py-4 transition-premium shadow-md shadow-bpp-blue-800/25 hover:scale-[1.02] active:scale-[0.98]">
+                        <svg class="w-5 h-5 mr-2 text-green-400 transform group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                         Tanya Harga via WhatsApp
                     </a>
 
-                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link produk berhasil disalin!');" class="w-full py-3.5 rounded-xl border-2 border-gray-200 text-gray-700 font-bold hover:bg-gray-50 flex justify-center items-center gap-2 transition text-sm md:text-base">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link produk berhasil disalin!');" class="w-full py-3.5 rounded-xl border border-gray-200 text-gray-700 font-bold hover:bg-gray-50 flex justify-center items-center gap-2 transition-premium hover:scale-[1.02] active:scale-[0.98] text-sm md:text-base">
+                        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                         Bagikan Link
                     </button>
 
@@ -116,7 +131,7 @@
 
         async function tampilkanDetail() {
             if (!idProduk) {
-                document.getElementById('loading').innerHTML = '<p class="text-red-500 font-bold">Error: Produk tidak ditemukan!</p>';
+                document.getElementById('loading').innerHTML = '<p class="text-red-500 font-bold flex flex-col justify-center items-center h-full">Error: Produk tidak ditemukan!</p>';
                 return;
             }
 
@@ -163,9 +178,15 @@
                         gambarUtama.src = 'https://via.placeholder.com/600?text=Tidak+Ada+Gambar';
                     }
 
-                    // Menampilkan Konten
-                    document.getElementById('loading').classList.add('hidden');
-                    document.getElementById('konten-produk').classList.remove('hidden');
+                    // Menampilkan Konten dengan smooth fade
+                    const loadingScreen = document.getElementById('loading');
+                    loadingScreen.classList.add('opacity-0');
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        const mainKonten = document.getElementById('konten-produk');
+                        mainKonten.classList.remove('hidden');
+                        mainKonten.classList.add('animate-fade-slide-up');
+                    }, 500);
 
                 } else {
                     document.getElementById('loading').innerHTML = '<p class="text-red-500 font-bold">Produk tidak tersedia.</p>';
@@ -176,14 +197,14 @@
             }
         }
 
-        // Fungsi Klik Gambar
+        // Fungsi Klik Gambar dengan transisi fade
         window.gantiGambar = function(elemen, urlBaru) {
             const gambarUtama = document.getElementById('gambar-utama');
-            gambarUtama.style.opacity = '0.4';
+            gambarUtama.style.opacity = '0';
             setTimeout(() => {
                 gambarUtama.src = urlBaru;
                 gambarUtama.style.opacity = '1';
-            }, 150);
+            }, 200);
 
             const semuaThumb = document.querySelectorAll('.thumb-img');
             semuaThumb.forEach(thumb => {
@@ -195,6 +216,33 @@
         }
 
         tampilkanDetail();
+
+        // Navbar dynamic styling on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { 
+            if(window.scrollY > 30) { 
+                navbar.classList.add('shadow-lg', 'md:top-2'); 
+                navbar.classList.remove('md:top-4'); 
+            } else { 
+                navbar.classList.remove('shadow-lg', 'md:top-2'); 
+                navbar.classList.add('md:top-4'); 
+            } 
+        });
+
+        // Scroll progress bar JS fallback for browsers lacking animation-timeline support
+        if (!CSS.supports('animation-timeline', 'scroll()')) {
+            const progressBar = document.querySelector('.scroll-progress-indicator');
+            if (progressBar) {
+                progressBar.style.transform = 'scaleX(0)';
+                window.addEventListener('scroll', () => {
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    if (scrollHeight > 0) {
+                        const scrollPercent = (window.scrollY / scrollHeight);
+                        progressBar.style.transform = `scaleX(${scrollPercent})`;
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>

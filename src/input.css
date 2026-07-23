@@ -4,16 +4,35 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-glass;
+    @apply bg-white/75 backdrop-blur-lg border border-white/30 shadow-glass;
   }
   .glass-dark {
-    @apply bg-gray-900/70 backdrop-blur-md border border-gray-700/50 shadow-glass text-white;
+    @apply bg-gray-900/75 backdrop-blur-lg border border-gray-700/40 shadow-glass text-white;
   }
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-bpp-blue to-bpp-gold;
   }
   .text-gradient-gold {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-bpp-gold-900;
+  }
+  
+  /* Premium Transition Curve */
+  .ease-premium {
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .transition-premium {
+    @apply transition-all duration-500 ease-premium;
+  }
+  
+  /* Image Hover Zoom wrapper */
+  .hover-zoom-img {
+    @apply overflow-hidden;
+  }
+  .hover-zoom-img img {
+    @apply transition-all duration-700 ease-out;
+  }
+  .hover-zoom-img:hover img {
+    @apply scale-110;
   }
 }
 
@@ -36,3 +55,97 @@
 body {
   @apply text-slate-800 antialiased selection:bg-bpp-gold/30 selection:text-bpp-blue-900;
 }
+
+/* Scroll Progress indicator */
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.scroll-progress-indicator {
+  transform-origin: 0 50%;
+  animation: grow-progress auto linear;
+  animation-timeline: scroll(root block);
+}
+
+/* Staggered Animations */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide-up {
+  opacity: 0;
+  animation: fadeSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.stagger-1 { animation-delay: 80ms; }
+.stagger-2 { animation-delay: 160ms; }
+.stagger-3 { animation-delay: 240ms; }
+.stagger-4 { animation-delay: 320ms; }
+.stagger-5 { animation-delay: 400ms; }
+.stagger-6 { animation-delay: 480ms; }
+.stagger-7 { animation-delay: 560ms; }
+.stagger-8 { animation-delay: 640ms; }
+
+/* Modal Transitions supporting @starting-style */
+.modal-overlay-anim {
+  transition: opacity 0.4s ease, display 0.4s allow-discrete;
+}
+.modal-container-anim {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  transform: scale(1);
+  opacity: 1;
+}
+
+@starting-style {
+  .modal-overlay-anim {
+    opacity: 0;
+  }
+  .modal-container-anim {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+}
+
+/* Scroll to top premium button styling */
+.scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  background: rgba(28, 91, 150, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15), 0 0 10px rgba(28, 91, 150, 0.2);
+}
+.scroll-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+.scroll-top:hover {
+  background: #1c5b96;
+  border-color: #c1983c;
+  color: white;
+  box-shadow: 0 0 20px rgba(193, 152, 60, 0.6);
+  transform: translateY(-4px) scale(1.1);
+}
+
+

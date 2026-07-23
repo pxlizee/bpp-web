@@ -85,14 +85,16 @@
 </head>
 <body class="antialiased">
 
-    <!-- Navbar dengan logo (sesuaikan path logo Anda) -->
-    <div class="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <!-- Ganti dengan path logo Anda -->
-                <img src="./assets/logo-2.png" alt="BPP Logo" class="h-10 w-auto">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-indicator fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-bpp-blue to-bpp-gold-500 origin-left z-[100] pointer-events-none"></div>
+
+    <!-- Navbar dengan logo -->
+    <div id="navbar" class="fixed top-0 left-0 right-0 z-50 md:top-4 mx-auto w-full md:w-[90%] md:max-w-7xl md:rounded-2xl transition-all duration-500 glass border-b md:border border-white/20 p-4 shadow-md bg-white/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-2 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="./assets/logo-2.png" alt="BPP Logo" class="h-10 w-auto transition-transform duration-500 group-hover:scale-105">
             </a>
-            <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-bpp-blue-800 transition flex items-center gap-1">
+            <a href="index.html" class="text-sm font-semibold text-gray-600 hover:text-bpp-blue-800 transition flex items-center gap-1 bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg border border-gray-200 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Kembali ke Beranda
             </a>
@@ -100,11 +102,11 @@
     </div>
 
     <!-- Header -->
-    <div class="relative bg-bpp-blue-900 text-white overflow-hidden">
+    <div class="relative bg-bpp-blue-900 text-white overflow-hidden pt-36 md:pt-44 pb-16 md:pb-24">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1457364887197-9150188c107b?q=80&w=2070')] bg-cover bg-center opacity-10"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-sm">Artikel & <span class="text-amber-300">Berita</span></h1>
-            <p class="text-lg md:text-xl text-bpp-blue-100 max-w-2xl mx-auto">Wawasan, tips, dan informasi terbaru seputar konstruksi & material dari PT Bojongkokosan Putra Perkasa.</p>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-sm text-gradient-gold bg-gradient-to-r from-yellow-300 to-amber-400">Artikel & <span class="text-white">Berita</span></h1>
+            <p class="text-lg md:text-xl text-bpp-blue-100 max-w-2xl mx-auto font-medium">Wawasan, tips, dan informasi terbaru seputar konstruksi & material dari PT Bojongkokosan Putra Perkasa.</p>
         </div>
     </div>
 
@@ -120,12 +122,12 @@
         </div>
     </div>
 
-    <!-- Modal Detail Artikel -->
-    <div id="modal-detail" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop transition-all duration-300">
-        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="modal-container">
-            <div class="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+    <!-- Modal Detail Artikel (Discrete transitions) -->
+    <div id="modal-detail" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop modal-overlay-anim opacity-0">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl modal-container-anim" id="modal-container">
+            <div class="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
                 <h3 id="modal-judul" class="text-2xl font-bold text-bpp-blue-900">Artikel</h3>
-                <button onclick="tutupModal()" class="text-gray-400 hover:text-gray-700 transition-all text-3xl leading-none">&times;</button>
+                <button onclick="tutupModal()" class="text-gray-400 hover:text-red-500 transition-all text-3xl leading-none">&times;</button>
             </div>
             <div id="modal-body" class="p-6"></div>
         </div>
@@ -168,8 +170,8 @@
                     const tanggal = formatTanggal(a.tanggalDitambahkan);
                     
                     const card = document.createElement('div');
-                    card.className = 'artikel-card rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-100 card-hover';
-                    card.style.animationDelay = `${index * 0.05}s`;
+                    card.className = 'artikel-card rounded-2xl overflow-hidden bg-white shadow-lg border border-gray-100 card-hover animate-fade-slide-up';
+                    card.style.animationDelay = `${index * 80}ms`;
                     card.innerHTML = `
                         <div class="relative overflow-hidden group">
                             <img src="${cover}" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110" alt="${a.judul}">
@@ -185,7 +187,7 @@
                             <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">${a.judul}</h3>
                             <p class="text-gray-600 text-sm line-clamp-3 mb-4">${stripHtml(a.isi || '')}</p>
                             <button onclick="bukaModal('${id}')" class="inline-flex items-center gap-2 text-bpp-blue-700 font-semibold text-sm border border-blue-200 rounded-full px-4 py-2 hover:bg-bpp-blue-700 hover:text-white hover:border-bpp-blue-700 transition-all duration-200">
-                                Baca Selengkapnya <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                Baca Selengkapnya <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </button>
                         </div>
                     `;
@@ -229,26 +231,63 @@
 
             const modal = document.getElementById('modal-detail');
             const modalContainer = document.getElementById('modal-container');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            setTimeout(() => {
-                modalContainer.classList.remove('scale-95', 'opacity-0');
-                modalContainer.classList.add('scale-100', 'opacity-100');
-            }, 10);
+            
+            modal.style.display = 'flex';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    modal.classList.remove('hidden', 'opacity-0');
+                    modal.classList.add('opacity-100');
+                    modalContainer.classList.remove('scale-92', 'opacity-0');
+                    modalContainer.classList.add('scale-100', 'opacity-100');
+                });
+            });
         };
 
         window.tutupModal = () => {
             const modal = document.getElementById('modal-detail');
             const modalContainer = document.getElementById('modal-container');
-            modalContainer.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                modalContainer.classList.remove('scale-100', 'opacity-100');
-            }, 200);
+            
+            modal.classList.add('opacity-0');
+            modalContainer.classList.add('scale-92', 'opacity-0');
+            modalContainer.classList.remove('scale-100', 'opacity-100');
+            
+            modal.addEventListener('transitionend', () => {
+                if (modal.classList.contains('opacity-0')) {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }
+            }, { once: true });
         };
 
         tampilkanArtikel();
+
+        // Navbar dynamic styling on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { 
+            if(window.scrollY > 30) { 
+                navbar.classList.add('shadow-lg', 'md:top-2'); 
+                navbar.classList.remove('md:top-4'); 
+            } else { 
+                navbar.classList.remove('shadow-lg', 'md:top-2'); 
+                navbar.classList.add('md:top-4'); 
+            } 
+        });
+
+        // Scroll progress bar JS fallback for browsers lacking animation-timeline support
+        if (!CSS.supports('animation-timeline', 'scroll()')) {
+            const progressBar = document.querySelector('.scroll-progress-indicator');
+            if (progressBar) {
+                progressBar.style.transform = 'scaleX(0)';
+                window.addEventListener('scroll', () => {
+                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    if (scrollHeight > 0) {
+                        const scrollPercent = (window.scrollY / scrollHeight);
+                        progressBar.style.transform = `scaleX(${scrollPercent})`;
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>
